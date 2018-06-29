@@ -3,6 +3,12 @@
   "rules": {
     "jsx-wrap-multiline": false,
     "trailing-comma": false,
-    "member-access": false
+    "member-access": false,
+    "arrow-parens": false,
+    "jsx-boolean-value": false,
+    "ordered-imports": false,
+    "object-literal-sort-keys": false,
+    "variable-name": false,
+    "no-unused-expression": false
   }
 }
