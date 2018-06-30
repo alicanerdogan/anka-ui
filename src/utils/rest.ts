@@ -21,3 +21,14 @@ export async function getAccessToken(
   const text = await resp.text();
   return text;
 }
+
+export async function getTimeline(accessToken: string) {
+  const resp = await fetch(`/api/timeline?accessToken=${accessToken}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+  const payload = await resp.json();
+  return payload;
+}

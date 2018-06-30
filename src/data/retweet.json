@@ -1,0 +1,214 @@
+{
+  "created_at": "Sat Jun 30 16:13:25 +0000 2018",
+  "id": 1013093157465133000,
+  "id_str": "1013093157465133057",
+  "text":
+    "RT @MesutOzil1088: Having to leave the World Cup already after the group stage hurts so much. We just weren't good enough. I'll need some t…",
+  "truncated": false,
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "user_mentions": [
+      {
+        "screen_name": "MesutOzil1088",
+        "name": "Mesut Özil",
+        "id": 533085085,
+        "id_str": "533085085",
+        "indices": [3, 17]
+      }
+    ],
+    "urls": []
+  },
+  "source":
+    "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+  "in_reply_to_status_id": null,
+  "in_reply_to_status_id_str": null,
+  "in_reply_to_user_id": null,
+  "in_reply_to_user_id_str": null,
+  "in_reply_to_screen_name": null,
+  "user": {
+    "id": 19072286,
+    "id_str": "19072286",
+    "name": "Jan Böhmermann 🤨🇪🇺",
+    "screen_name": "janboehm",
+    "location": "Deutschland",
+    "description":
+      "from the motherland of fun / kundendienst 0221-97581870 / https://t.co/SHKSsRXWeN",
+    "url": "https://t.co/9SEGzQ4VRn",
+    "entities": {
+      "url": {
+        "urls": [
+          {
+            "url": "https://t.co/9SEGzQ4VRn",
+            "expanded_url": "http://www.neomagazinroyale.de",
+            "display_url": "neomagazinroyale.de",
+            "indices": [0, 23]
+          }
+        ]
+      },
+      "description": {
+        "urls": [
+          {
+            "url": "https://t.co/SHKSsRXWeN",
+            "expanded_url": "http://boehmermann.de",
+            "display_url": "boehmermann.de",
+            "indices": [58, 81]
+          }
+        ]
+      }
+    },
+    "protected": false,
+    "followers_count": 2034438,
+    "friends_count": 1012,
+    "listed_count": 2434,
+    "created_at": "Fri Jan 16 15:55:55 +0000 2009",
+    "favourites_count": 13531,
+    "utc_offset": null,
+    "time_zone": null,
+    "geo_enabled": false,
+    "verified": true,
+    "statuses_count": 17953,
+    "lang": "de",
+    "contributors_enabled": false,
+    "is_translator": false,
+    "is_translation_enabled": false,
+    "profile_background_color": "000000",
+    "profile_background_image_url":
+      "http://abs.twimg.com/images/themes/theme14/bg.gif",
+    "profile_background_image_url_https":
+      "https://abs.twimg.com/images/themes/theme14/bg.gif",
+    "profile_background_tile": false,
+    "profile_image_url":
+      "http://pbs.twimg.com/profile_images/1013080231744241664/pdsIm6yS_normal.jpg",
+    "profile_image_url_https":
+      "https://pbs.twimg.com/profile_images/1013080231744241664/pdsIm6yS_normal.jpg",
+    "profile_banner_url":
+      "https://pbs.twimg.com/profile_banners/19072286/1530372408",
+    "profile_link_color": "ABB8C2",
+    "profile_sidebar_border_color": "000000",
+    "profile_sidebar_fill_color": "000000",
+    "profile_text_color": "000000",
+    "profile_use_background_image": false,
+    "has_extended_profile": true,
+    "default_profile": false,
+    "default_profile_image": false,
+    "following": true,
+    "follow_request_sent": false,
+    "notifications": false,
+    "translator_type": "none"
+  },
+  "geo": null,
+  "coordinates": null,
+  "place": null,
+  "contributors": null,
+  "retweeted_status": {
+    "created_at": "Fri Jun 29 18:58:35 +0000 2018",
+    "id": 1012772333701025800,
+    "id_str": "1012772333701025792",
+    "text":
+      "Having to leave the World Cup already after the group stage hurts so much. We just weren't good enough. I'll need s… https://t.co/pI6Bk8RXVB",
+    "truncated": true,
+    "entities": {
+      "hashtags": [],
+      "symbols": [],
+      "user_mentions": [],
+      "urls": [
+        {
+          "url": "https://t.co/pI6Bk8RXVB",
+          "expanded_url":
+            "https://twitter.com/i/web/status/1012772333701025792",
+          "display_url": "twitter.com/i/web/status/1…",
+          "indices": [117, 140]
+        }
+      ]
+    },
+    "source":
+      "<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>",
+    "in_reply_to_status_id": null,
+    "in_reply_to_status_id_str": null,
+    "in_reply_to_user_id": null,
+    "in_reply_to_user_id_str": null,
+    "in_reply_to_screen_name": null,
+    "user": {
+      "id": 533085085,
+      "id_str": "533085085",
+      "name": "Mesut Özil",
+      "screen_name": "MesutOzil1088",
+      "location": "England",
+      "description": "Football player for @arsenal & @DFB_Team",
+      "url": "https://t.co/pSlJJ3webU",
+      "entities": {
+        "url": {
+          "urls": [
+            {
+              "url": "https://t.co/pSlJJ3webU",
+              "expanded_url": "http://www.mesutoezil.com",
+              "display_url": "mesutoezil.com",
+              "indices": [0, 23]
+            }
+          ]
+        },
+        "description": {
+          "urls": []
+        }
+      },
+      "protected": false,
+      "followers_count": 23246576,
+      "friends_count": 88,
+      "listed_count": 15581,
+      "created_at": "Thu Mar 22 12:12:51 +0000 2012",
+      "favourites_count": 39,
+      "utc_offset": null,
+      "time_zone": null,
+      "geo_enabled": true,
+      "verified": true,
+      "statuses_count": 1406,
+      "lang": "en-gb",
+      "contributors_enabled": false,
+      "is_translator": false,
+      "is_translation_enabled": true,
+      "profile_background_color": "C0DEED",
+      "profile_background_image_url":
+        "http://abs.twimg.com/images/themes/theme1/bg.png",
+      "profile_background_image_url_https":
+        "https://abs.twimg.com/images/themes/theme1/bg.png",
+      "profile_background_tile": false,
+      "profile_image_url":
+        "http://pbs.twimg.com/profile_images/928189325568827392/3eFJIePn_normal.jpg",
+      "profile_image_url_https":
+        "https://pbs.twimg.com/profile_images/928189325568827392/3eFJIePn_normal.jpg",
+      "profile_banner_url":
+        "https://pbs.twimg.com/profile_banners/533085085/1510132624",
+      "profile_link_color": "1DA1F2",
+      "profile_sidebar_border_color": "C0DEED",
+      "profile_sidebar_fill_color": "DDEEF6",
+      "profile_text_color": "333333",
+      "profile_use_background_image": true,
+      "has_extended_profile": false,
+      "default_profile": true,
+      "default_profile_image": false,
+      "following": false,
+      "follow_request_sent": false,
+      "notifications": false,
+      "translator_type": "none"
+    },
+    "geo": null,
+    "coordinates": null,
+    "place": null,
+    "contributors": null,
+    "is_quote_status": false,
+    "retweet_count": 7237,
+    "favorite_count": 40250,
+    "favorited": false,
+    "retweeted": false,
+    "possibly_sensitive": false,
+    "possibly_sensitive_appealable": false,
+    "lang": "en"
+  },
+  "is_quote_status": false,
+  "retweet_count": 7237,
+  "favorite_count": 0,
+  "favorited": false,
+  "retweeted": false,
+  "lang": "en"
+}

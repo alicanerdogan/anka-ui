@@ -5,6 +5,10 @@
   "license": "MIT",
   "devDependencies": {
     "awesome-typescript-loader": "^5.2.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-emotion": "^9.2.4",
+    "babel-preset-env": "^1.7.0",
     "html-webpack-plugin": "^3.2.0",
     "prettier": "^1.13.6",
     "source-map-loader": "^0.2.3",
