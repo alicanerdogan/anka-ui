@@ -5,9 +5,10 @@ export interface ITweet {
   created_at: string;
   id: number;
   id_str: string;
-  text: string;
+  text?: string;
+  full_text: string;
   truncated: boolean;
-  entities: ITweetEntities | any;
+  entities: ITweetEntities;
   extended_entities: ITweetExtendedEntities;
   source: string;
   in_reply_to_status_id: number;

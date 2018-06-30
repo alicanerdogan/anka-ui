@@ -2003,6 +2003,13 @@ figures@^2.0.0:
   dependencies:
     escape-string-regexp "^1.0.5"
 
+file-loader@^1.1.11:
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/file-loader/-/file-loader-1.1.11.tgz#6fe886449b0f2a936e43cabaac0cdbfb369506f8"
+  dependencies:
+    loader-utils "^1.0.2"
+    schema-utils "^0.4.5"
+
 fill-range@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/fill-range/-/fill-range-4.0.0.tgz#d544811d428f98eb06a63dc402d2403c328c38f7"
@@ -4332,6 +4339,12 @@ string_decoder@~0.10.x:
   version "0.10.31"
   resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-0.10.31.tgz#62e203bc41766c6c28c9fc84301dab1c5310fa94"
 
+stringz@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/stringz/-/stringz-1.0.0.tgz#d2acba994e4ce3c725ee15c86fff4281280d2025"
+  dependencies:
+    unicode-astral-regex "^1.0.1"
+
 strip-ansi@^3.0.0, strip-ansi@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-3.0.1.tgz#6a385fb8853d952d5ff05d0e8aaf94278dc63dcf"
@@ -4563,6 +4576,10 @@ uglifyjs-webpack-plugin@^1.2.4:
     uglify-es "^3.3.4"
     webpack-sources "^1.1.0"
     worker-farm "^1.5.2"
+
+unicode-astral-regex@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/unicode-astral-regex/-/unicode-astral-regex-1.0.1.tgz#2cab8529480646f9614ddbc7b62158ad05123feb"
 
 union-value@^1.0.0:
   version "1.0.0"

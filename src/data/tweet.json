@@ -1,46 +1,56 @@
 {
-  "created_at": "Sat Jun 30 08:39:00 +0000 2018",
-  "id": 1012978798432792600,
-  "id_str": "1012978798432792576",
-  "text":
-    "Not even gravity could hold back the great @rodlaver when he celebrated his #Wimbledon triumphs... https://t.co/0iTqc3ATog",
+  "created_at": "Sat Jun 30 20:01:13 +0000 2018",
+  "id": 1013150482066493400,
+  "id_str": "1013150482066493441",
+  "full_text":
+    "🚨Canlı yayındayız!\n\nGece Mesaisi'nin yeni bölümünde @canereler, İlhan Özgen ve @parmamaniac; 2018 #WorldCup'ta günün maçlarını değerlendiriyor: https://t.co/2JOUZ3MP36 https://t.co/2I5fSPyfCp",
   "truncated": false,
+  "display_text_range": [0, 167],
   "entities": {
     "hashtags": [
       {
-        "text": "Wimbledon",
-        "indices": [76, 86]
+        "text": "WorldCup",
+        "indices": [98, 107]
       }
     ],
     "symbols": [],
     "user_mentions": [
       {
-        "screen_name": "rodlaver",
-        "name": "Rod Laver",
-        "id": 905604214398738400,
-        "id_str": "905604214398738433",
-        "indices": [43, 52]
+        "screen_name": "canereler",
+        "name": "Caner Eler",
+        "id": 63075162,
+        "id_str": "63075162",
+        "indices": [52, 62]
+      },
+      {
+        "screen_name": "parmamaniac",
+        "name": "Emre Özcan",
+        "id": 64534789,
+        "id_str": "64534789",
+        "indices": [79, 91]
       }
     ],
-    "urls": [],
+    "urls": [
+      {
+        "url": "https://t.co/2JOUZ3MP36",
+        "expanded_url": "https://youtu.be/p50-y0jEdHE",
+        "display_url": "youtu.be/p50-y0jEdHE",
+        "indices": [144, 167]
+      }
+    ],
     "media": [
       {
-        "id": 1012958370129743900,
-        "id_str": "1012958370129743873",
-        "indices": [99, 122],
-        "media_url": "http://pbs.twimg.com/media/Dg7ARU_XkAEm05W.jpg",
-        "media_url_https": "https://pbs.twimg.com/media/Dg7ARU_XkAEm05W.jpg",
-        "url": "https://t.co/0iTqc3ATog",
-        "display_url": "pic.twitter.com/0iTqc3ATog",
+        "id": 1013149461625954300,
+        "id_str": "1013149461625954306",
+        "indices": [168, 191],
+        "media_url": "http://pbs.twimg.com/media/Dg9uEUSX4AILQ5x.jpg",
+        "media_url_https": "https://pbs.twimg.com/media/Dg9uEUSX4AILQ5x.jpg",
+        "url": "https://t.co/2I5fSPyfCp",
+        "display_url": "pic.twitter.com/2I5fSPyfCp",
         "expanded_url":
-          "https://twitter.com/Wimbledon/status/1012978798432792576/photo/1",
+          "https://twitter.com/SocratesDergi/status/1013150482066493441/photo/1",
         "type": "photo",
         "sizes": {
-          "medium": {
-            "w": 1200,
-            "h": 675,
-            "resize": "fit"
-          },
           "thumb": {
             "w": 150,
             "h": 150,
@@ -51,9 +61,14 @@
             "h": 383,
             "resize": "fit"
           },
+          "medium": {
+            "w": 1200,
+            "h": 675,
+            "resize": "fit"
+          },
           "large": {
-            "w": 2048,
-            "h": 1152,
+            "w": 1280,
+            "h": 720,
             "resize": "fit"
           }
         }
@@ -63,22 +78,17 @@
   "extended_entities": {
     "media": [
       {
-        "id": 1012958370129743900,
-        "id_str": "1012958370129743873",
-        "indices": [99, 122],
-        "media_url": "http://pbs.twimg.com/media/Dg7ARU_XkAEm05W.jpg",
-        "media_url_https": "https://pbs.twimg.com/media/Dg7ARU_XkAEm05W.jpg",
-        "url": "https://t.co/0iTqc3ATog",
-        "display_url": "pic.twitter.com/0iTqc3ATog",
+        "id": 1013149461625954300,
+        "id_str": "1013149461625954306",
+        "indices": [168, 191],
+        "media_url": "http://pbs.twimg.com/media/Dg9uEUSX4AILQ5x.jpg",
+        "media_url_https": "https://pbs.twimg.com/media/Dg9uEUSX4AILQ5x.jpg",
+        "url": "https://t.co/2I5fSPyfCp",
+        "display_url": "pic.twitter.com/2I5fSPyfCp",
         "expanded_url":
-          "https://twitter.com/Wimbledon/status/1012978798432792576/photo/1",
+          "https://twitter.com/SocratesDergi/status/1013150482066493441/photo/1",
         "type": "photo",
         "sizes": {
-          "medium": {
-            "w": 1200,
-            "h": 675,
-            "resize": "fit"
-          },
           "thumb": {
             "w": 150,
             "h": 150,
@@ -89,9 +99,14 @@
             "h": 383,
             "resize": "fit"
           },
+          "medium": {
+            "w": 1200,
+            "h": 675,
+            "resize": "fit"
+          },
           "large": {
-            "w": 2048,
-            "h": 1152,
+            "w": 1280,
+            "h": 720,
             "resize": "fit"
           }
         }
@@ -100,68 +115,75 @@
   },
   "source":
     "<a href=\"http://twitter.com\" rel=\"nofollow\">Twitter Web Client</a>",
-  "in_reply_to_status_id": 1012768155750498300,
-  "in_reply_to_status_id_str": "1012768155750498304",
-  "in_reply_to_user_id": 14857290,
-  "in_reply_to_user_id_str": "14857290",
-  "in_reply_to_screen_name": "Wimbledon",
+  "in_reply_to_status_id": null,
+  "in_reply_to_status_id_str": null,
+  "in_reply_to_user_id": null,
+  "in_reply_to_user_id_str": null,
+  "in_reply_to_screen_name": null,
   "user": {
-    "id": 14857290,
-    "id_str": "14857290",
-    "name": "Wimbledon",
-    "screen_name": "Wimbledon",
-    "location": "Wimbledon, London",
+    "id": 2831651580,
+    "id_str": "2831651580",
+    "name": "Socrates",
+    "screen_name": "SocratesDergi",
+    "location": "info@socratesdergi.com",
     "description":
-      "The official Twitter for The Championships, Wimbledon. #Wimbledon 🎾",
-    "url": "https://t.co/uCqEezyhcN",
+      "Düşünen Spor Dergisi | @CanYayinlari\nhttps://t.co/ZJon7Dr0RB",
+    "url": "https://t.co/08SaEzxHBY",
     "entities": {
       "url": {
         "urls": [
           {
-            "url": "https://t.co/uCqEezyhcN",
-            "expanded_url": "http://www.wimbledon.com",
-            "display_url": "wimbledon.com",
+            "url": "https://t.co/08SaEzxHBY",
+            "expanded_url": "http://www.socratesdergi.com/",
+            "display_url": "socratesdergi.com",
             "indices": [0, 23]
           }
         ]
       },
       "description": {
-        "urls": []
+        "urls": [
+          {
+            "url": "https://t.co/ZJon7Dr0RB",
+            "expanded_url": "http://youtube.com/socratesdergi",
+            "display_url": "youtube.com/socratesdergi",
+            "indices": [37, 60]
+          }
+        ]
       }
     },
     "protected": false,
-    "followers_count": 3571288,
-    "friends_count": 374,
-    "listed_count": 11883,
-    "created_at": "Wed May 21 14:49:35 +0000 2008",
-    "favourites_count": 3582,
+    "followers_count": 59476,
+    "friends_count": 170,
+    "listed_count": 330,
+    "created_at": "Thu Sep 25 11:59:03 +0000 2014",
+    "favourites_count": 324,
     "utc_offset": null,
     "time_zone": null,
     "geo_enabled": true,
-    "verified": true,
-    "statuses_count": 23726,
-    "lang": "en",
+    "verified": false,
+    "statuses_count": 5911,
+    "lang": "tr",
     "contributors_enabled": false,
     "is_translator": false,
     "is_translation_enabled": false,
-    "profile_background_color": "266E38",
+    "profile_background_color": "D8D8D8",
     "profile_background_image_url":
       "http://abs.twimg.com/images/themes/theme1/bg.png",
     "profile_background_image_url_https":
       "https://abs.twimg.com/images/themes/theme1/bg.png",
-    "profile_background_tile": false,
+    "profile_background_tile": true,
     "profile_image_url":
-      "http://pbs.twimg.com/profile_images/479970482091864064/oaSYe5s2_normal.jpeg",
+      "http://pbs.twimg.com/profile_images/936299754379673600/_qxGnuxw_normal.jpg",
     "profile_image_url_https":
-      "https://pbs.twimg.com/profile_images/479970482091864064/oaSYe5s2_normal.jpeg",
+      "https://pbs.twimg.com/profile_images/936299754379673600/_qxGnuxw_normal.jpg",
     "profile_banner_url":
-      "https://pbs.twimg.com/profile_banners/14857290/1528660139",
-    "profile_link_color": "5552FA",
-    "profile_sidebar_border_color": "FFFFFF",
-    "profile_sidebar_fill_color": "DDFFCC",
+      "https://pbs.twimg.com/profile_banners/2831651580/1527953594",
+    "profile_link_color": "6E6E6E",
+    "profile_sidebar_border_color": "C0DEED",
+    "profile_sidebar_fill_color": "DDEEF6",
     "profile_text_color": "333333",
     "profile_use_background_image": true,
-    "has_extended_profile": true,
+    "has_extended_profile": false,
     "default_profile": false,
     "default_profile_image": false,
     "following": true,
@@ -174,11 +196,11 @@
   "place": null,
   "contributors": null,
   "is_quote_status": false,
-  "retweet_count": 5,
-  "favorite_count": 28,
+  "retweet_count": 1,
+  "favorite_count": 15,
   "favorited": false,
   "retweeted": false,
   "possibly_sensitive": false,
   "possibly_sensitive_appealable": false,
-  "lang": "en"
+  "lang": "tr"
 }

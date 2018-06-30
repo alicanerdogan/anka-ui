@@ -22,6 +22,10 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        loader: 'file-loader'
+      },
       { test: /\.tsx?$/, loaders: ["babel-loader", "awesome-typescript-loader"] },
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
     ]

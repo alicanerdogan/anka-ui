@@ -20,7 +20,9 @@ export interface IHashtag {
   text: string;
   indices: Indices;
 }
-export interface ISymbol {}
+export interface ISymbol {
+  indices: Indices;
+}
 
 export interface IUserMention {
   screen_name: string;
@@ -29,7 +31,12 @@ export interface IUserMention {
   id_str: string;
   indices: Indices;
 }
-export interface IUrl {}
+export interface IUrl {
+  indices: Indices;
+  url: string;
+  expanded_url: string;
+  display_url: string;
+}
 
 export enum MediaType {
   PHOTO = "photo"
@@ -68,7 +75,7 @@ export interface ITweetEntities {
   symbols: ISymbol[];
   user_mentions: IUserMention[];
   urls: IUrl[];
-  media: IMedia[];
+  media?: IMedia[];
 }
 
 export interface ITweetExtendedEntities {
