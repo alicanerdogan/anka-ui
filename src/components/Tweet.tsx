@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "react-emotion";
 import { ITweet } from "../models/Tweet";
-import { TweetBody } from "./TweetBody";
+import { TweetBody, Style as TweetBodyStyle } from "./TweetBody";
 
 export interface ITweetProps {
   tweet: ITweet;
@@ -12,14 +12,18 @@ interface ITweetState {}
 export const Style = styled.div`
   border: solid 1px #ccc;
   border-top: none;
-  padding: 12px;
+
+  ${TweetBodyStyle} {
+    padding: 12px;
+  }
 `;
 
 export const RTStatus = styled.span`
+  background: #f0f0f0;
+  color: #444;
   display: block;
-  margin-left: 60px;
+  padding: 4px 0 4px 72px;
   margin-bottom: 4px;
-  font-weight: 300;
 `;
 
 export class Tweet extends React.Component<ITweetProps, ITweetState> {
