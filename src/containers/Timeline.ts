@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { IRootState } from "./../reducers/reducer";
 import { Timeline } from "./../components/Timeline";
-import { getTimeline } from "../actions/tweets";
+import { getTimeline, getNewTimeline, getOldTimeline } from "../actions/tweets";
 import { parseQueryString } from "../utils/url";
 
 interface IStateProps {
@@ -11,6 +11,8 @@ interface IStateProps {
 
 interface IDispatchProps {
   getTimeline: (T: string) => void;
+  getNewTimeline: (T: string, U: string) => void;
+  getOldTimeline: (T: string, U: string) => void;
 }
 
 interface IProps {
@@ -31,12 +33,17 @@ const mergeProps: MergeProps = (stateProps, dispatchProps, ownProps) => {
     accessToken || parseQueryString(ownProps.location.search).accessToken;
   return {
     ...restStateProps,
-    getTimeline: () => dispatchProps.getTimeline(token)
+    getTimeline: () => dispatchProps.getTimeline(token),
+    getNewTimeline: (sinceId: string) =>
+      dispatchProps.getNewTimeline(token, sinceId),
+    getOldTimeline: (maxId: string) =>
+      dispatchProps.getOldTimeline(token, maxId),
+    autoRefresh: true
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getTimeline },
+  { getTimeline, getNewTimeline, getOldTimeline },
   mergeProps
 )(Timeline);

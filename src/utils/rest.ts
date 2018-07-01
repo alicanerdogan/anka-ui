@@ -1,3 +1,5 @@
+import { getQueryString } from "./url";
+
 export async function getRequestToken() {
   const resp = await fetch("/api/request_token");
   const text = await resp.text();
@@ -22,8 +24,12 @@ export async function getAccessToken(
   return text;
 }
 
-export async function getTimeline(accessToken: string) {
-  const resp = await fetch(`/api/timeline?accessToken=${accessToken}`, {
+export async function getTimeline(query: {
+  accessToken: string;
+  since_id?: string;
+  max_id?: string;
+}) {
+  const resp = await fetch(`/api/timeline?${getQueryString(query)}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json"

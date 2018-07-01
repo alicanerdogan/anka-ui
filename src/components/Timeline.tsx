@@ -1,30 +1,75 @@
 import * as React from "react";
-import { RouteComponentProps } from "react-router";
 import styled from "react-emotion";
+import { throttle, first, last } from "lodash-es";
 import { Tweet, Style as TweetStyle } from "./Tweet";
+import { RefreshTimeline } from "./RefreshTimeline";
+import { ITweet } from "./../models/Tweet";
 
 export interface ITimelineProps {
   timeline?: any[];
-  getTimeline: () => any;
+  getTimeline: () => void;
+  getNewTimeline: (sinceId: string) => void;
+  getOldTimeline: (maxId: string) => void;
+  autoRefresh?: boolean;
 }
 
-const Style = styled.div``;
+export const Style = styled.div``;
+
+interface IScrollStatus {
+  scrollHeight: number;
+  scrollTop: number;
+  offsetHeight: number;
+}
 
 export class Timeline extends React.Component<ITimelineProps, {}> {
+  onScrollRef: (ev: React.SyntheticEvent) => void;
+  throttledGetOldTimeline: (maxId: string) => void;
+
+  constructor(props: ITimelineProps) {
+    super(props);
+
+    const throttledOnScroll = throttle(this.onScroll, 300);
+    this.onScrollRef = (ev: React.SyntheticEvent) => {
+      const element = ev.target as HTMLElement;
+      throttledOnScroll({
+        scrollHeight: element.scrollHeight,
+        scrollTop: element.scrollTop,
+        offsetHeight: element.offsetHeight
+      });
+    };
+    this.throttledGetOldTimeline = throttle(this.props.getOldTimeline, 10000);
+  }
+
   componentDidMount() {
     const { timeline, getTimeline } = this.props;
     !timeline && getTimeline();
   }
 
+  onScroll = ({
+    scrollHeight,
+    scrollTop,
+    offsetHeight
+  }: IScrollStatus): void => {
+    if (scrollHeight - scrollTop <= offsetHeight + 500) {
+      const { timeline } = this.props;
+      this.throttledGetOldTimeline(last<ITweet>(timeline).id_str);
+    }
+  };
+
   render(): JSX.Element {
-    const { timeline } = this.props;
+    const { timeline, autoRefresh, getNewTimeline } = this.props;
     if (!timeline) {
       return null;
     }
 
     return (
-      <Style>
-        {timeline.map(tweet => <Tweet key={tweet.id} tweet={tweet} />)}
+      <Style onScroll={this.onScrollRef}>
+        {autoRefresh && (
+          <RefreshTimeline
+            {...{ getNewTimeline, sinceId: first<ITweet>(timeline).id_str }}
+          />
+        )}
+        {timeline.map(tweet => <Tweet key={tweet.id_str} tweet={tweet} />)}
       </Style>
     );
   }

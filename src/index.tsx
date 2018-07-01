@@ -6,7 +6,7 @@ import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import thunkMiddleware from "redux-thunk";
 import LoginWithTwitter from "./containers/LoginWithTwitter";
 import Callback from "./containers/Callback";
-import Timeline from "./containers/Timeline";
+import { Home } from "./components/Home";
 import { Tweet } from "./components/Tweet";
 import reducer from "./reducers/reducer";
 import { injectGlobalStyles } from "./utils/styles";
@@ -35,7 +35,7 @@ ReactDOM.render(
       <Switch>
         <Route exact path="/" component={LoginWithTwitter} />
         <Route exact path="/auth_cb" component={Callback} />
-        <Route exact path="/timeline" component={Timeline} />
+        <Route exact path="/timeline" component={Home} />
         <Route exact path="/tweet" render={props => <Tweet tweet={tweet} />} />
       </Switch>
     </Router>

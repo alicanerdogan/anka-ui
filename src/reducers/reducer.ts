@@ -2,8 +2,11 @@ import { IAction } from "../utils/action";
 import {
   GET_ACCESS_TOKEN,
   GET_REQUEST_TOKEN,
-  GET_TIMELINE
+  GET_TIMELINE,
+  GET_NEW_TIMELINE,
+  GET_OLD_TIMELINE
 } from "./../actions/actions";
+import { drop } from "lodash-es";
 
 export interface IRootState {
   accessToken?: string;
@@ -24,6 +27,15 @@ const RootReducer: Reducer = (state = DEFAULT_STATE, action) => {
     }
     case GET_TIMELINE.success: {
       return { ...state, timeline: action.payload };
+    }
+    case GET_NEW_TIMELINE.success: {
+      return { ...state, timeline: [...action.payload, ...state.timeline] };
+    }
+    case GET_OLD_TIMELINE.success: {
+      return {
+        ...state,
+        timeline: [...state.timeline, ...drop(action.payload, 1)]
+      };
     }
     default: {
       return state;

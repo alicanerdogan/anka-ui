@@ -8,6 +8,7 @@ module.exports = {
   },
   devtool: "source-map",
   devServer: {
+    host: "0.0.0.0",
     contentBase: "./dist",
     compress: true,
     historyApiFallback: true,
