@@ -15,6 +15,14 @@ export interface ITweetBodyProps {
   tweet: ITweet;
 }
 
+const QuotedTweetBodyStyle = styled.div`
+  padding: 12px;
+  border: solid 1px #ccc;
+  border-radius: 3px;
+  background: #fff;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+`;
+
 export const Style = styled.div`
   display: flex;
 
@@ -27,6 +35,10 @@ export const Style = styled.div`
   }
 
   ${MediaViewerStyle} {
+    margin-top: 12px;
+  }
+
+  ${QuotedTweetBodyStyle} {
     margin-top: 12px;
   }
 `;
@@ -72,9 +84,26 @@ export const TweetBody: React.SFC<ITweetBodyProps> = (
           <TimeAgo>{getTimeAgo(new Date(tweet.created_at))}</TimeAgo>
         </Title>
         <TweetText tweet={tweet} />
-        <TweetStatus {...tweet as ITweetStatusProps} />
         {tweet.entities.media && <MediaViewer items={tweet.entities.media} />}
+        {tweet.quoted_status && <QuotedTweetBody tweet={tweet.quoted_status} />}
+        <TweetStatus {...tweet as ITweetStatusProps} />
       </div>
     </Style>
+  );
+};
+
+export const QuotedTweetBody: React.SFC<ITweetBodyProps> = (
+  props: ITweetBodyProps
+) => {
+  const { tweet } = props;
+  return (
+    <QuotedTweetBodyStyle>
+      <Title>
+        <Name>{tweet.user.name}</Name>
+        <Alias>{`@${tweet.user.screen_name}`}</Alias>
+        <TimeAgo>{getTimeAgo(new Date(tweet.created_at))}</TimeAgo>
+      </Title>
+      <TweetText tweet={tweet} />
+    </QuotedTweetBodyStyle>
   );
 };

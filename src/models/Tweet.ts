@@ -30,4 +30,5 @@ export interface ITweet {
   possibly_sensitive_appealable: boolean;
   lang: string;
   retweeted_status?: ITweet;
+  quoted_status?: ITweet;
 }

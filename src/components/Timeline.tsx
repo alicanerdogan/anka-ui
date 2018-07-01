@@ -24,6 +24,8 @@ interface IScrollStatus {
 export class Timeline extends React.Component<ITimelineProps, {}> {
   onScrollRef: (ev: React.SyntheticEvent) => void;
   throttledGetOldTimeline: (maxId: string) => void;
+  element?: HTMLElement;
+  scrollStatus?: IScrollStatus;
 
   constructor(props: ITimelineProps) {
     super(props);
@@ -45,6 +47,50 @@ export class Timeline extends React.Component<ITimelineProps, {}> {
     !timeline && getTimeline();
   }
 
+  componentWillReceiveProps(newProps: ITimelineProps) {
+    const newTimeline = newProps.timeline;
+    const timeline = this.props.timeline;
+
+    if (!timeline || !newTimeline) {
+      return;
+    }
+
+    if (
+      first<ITweet>(newTimeline) !== first<ITweet>(timeline) &&
+      this.element
+    ) {
+      this.scrollStatus = {
+        scrollHeight: this.element.scrollHeight,
+        scrollTop: this.element.scrollTop,
+        offsetHeight: this.element.offsetHeight
+      };
+      console.log(this.scrollStatus);
+    }
+  }
+
+  componentDidUpdate(oldProps: ITimelineProps) {
+    const oldTimeline = oldProps.timeline;
+    const timeline = this.props.timeline;
+
+    if (!timeline || !oldTimeline) {
+      return;
+    }
+
+    if (
+      first<ITweet>(oldTimeline) !== first<ITweet>(timeline) &&
+      this.element
+    ) {
+      window.requestAnimationFrame(() => {
+        const restoredScrollPosition =
+          this.scrollStatus.scrollTop +
+          this.element.scrollHeight -
+          this.scrollStatus.scrollHeight;
+        console.log(`scrolled to: ${restoredScrollPosition}`);
+        this.element.scrollTop = restoredScrollPosition;
+      });
+    }
+  }
+
   onScroll = ({
     scrollHeight,
     scrollTop,
@@ -63,7 +109,7 @@ export class Timeline extends React.Component<ITimelineProps, {}> {
     }
 
     return (
-      <Style onScroll={this.onScrollRef}>
+      <Style onScroll={this.onScrollRef} innerRef={el => (this.element = el)}>
         {autoRefresh && (
           <RefreshTimeline
             {...{ getNewTimeline, sinceId: first<ITweet>(timeline).id_str }}
