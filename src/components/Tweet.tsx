@@ -10,8 +10,7 @@ export interface ITweetProps {
 interface ITweetState {}
 
 export const Style = styled.div`
-  border: solid 1px #ccc;
-  border-top: none;
+  border-bottom: solid 1px #eee;
 
   ${TweetBodyStyle} {
     padding: 12px;

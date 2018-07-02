@@ -13,7 +13,13 @@ export interface ITimelineProps {
   autoRefresh?: boolean;
 }
 
-export const Style = styled.div``;
+export const Style = styled.div`
+  overflow: hidden;
+
+  &:hover {
+    overflow: auto;
+  }
+`;
 
 interface IScrollStatus {
   scrollHeight: number;
@@ -64,7 +70,6 @@ export class Timeline extends React.Component<ITimelineProps, {}> {
         scrollTop: this.element.scrollTop,
         offsetHeight: this.element.offsetHeight
       };
-      console.log(this.scrollStatus);
     }
   }
 
@@ -85,7 +90,6 @@ export class Timeline extends React.Component<ITimelineProps, {}> {
           this.scrollStatus.scrollTop +
           this.element.scrollHeight -
           this.scrollStatus.scrollHeight;
-        console.log(`scrolled to: ${restoredScrollPosition}`);
         this.element.scrollTop = restoredScrollPosition;
       });
     }

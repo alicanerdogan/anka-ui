@@ -10,16 +10,18 @@ export interface IHomeProps extends RouteComponentProps<any, any> {
 
 const Style = styled("div")`
   position: relative;
-  height: 100vh;
+  height: calc(100vh - 48px);
+  margin: 24px;
 
   ${TimelineStyle} {
     position: absolute;
     max-height: 100%;
-    overflow: auto;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
+    border-radius: 3px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
   }
 `;
 
