@@ -24,6 +24,7 @@ const GlobalRules = css`
     text-align: left;
     margin: 0 auto;
     max-width: 900px;
+    background: #f0f0f0;
   }
 
   h1,
