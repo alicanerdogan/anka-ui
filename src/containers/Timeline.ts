@@ -1,7 +1,8 @@
 import { connect } from "react-redux";
 import { IRootState } from "./../reducers/reducer";
-import { Timeline } from "./../components/Timeline";
+import { Timeline, ITimelineProps } from "./../components/Timeline";
 import { getTimeline, getNewTimeline, getOldTimeline } from "../actions/tweets";
+import { markAllAsRead } from "../actions/ui";
 import { parseQueryString } from "../utils/url";
 
 interface IStateProps {
@@ -13,14 +14,10 @@ interface IDispatchProps {
   getTimeline: (T: string) => void;
   getNewTimeline: (T: string, U: string) => void;
   getOldTimeline: (T: string, U: string) => void;
+  markAllAsRead: () => void;
 }
 
-interface IProps {
-  timeline: any[];
-  getTimeline: (T: string) => void;
-}
-
-type MergeProps = (T: IStateProps, Y: IDispatchProps, U: any) => IProps;
+type MergeProps = (T: IStateProps, Y: IDispatchProps, U: any) => ITimelineProps;
 
 const mapStateToProps: (T: IRootState) => IStateProps = state => ({
   accessToken: state.accessToken,
@@ -38,12 +35,13 @@ const mergeProps: MergeProps = (stateProps, dispatchProps, ownProps) => {
       dispatchProps.getNewTimeline(token, sinceId),
     getOldTimeline: (maxId: string) =>
       dispatchProps.getOldTimeline(token, maxId),
+    onSeenAllNew: () => dispatchProps.markAllAsRead(),
     autoRefresh: true
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getTimeline, getNewTimeline, getOldTimeline },
+  { getTimeline, getNewTimeline, getOldTimeline, markAllAsRead },
   mergeProps
 )(Timeline);

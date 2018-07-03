@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "react-emotion";
 import { RouteComponentProps } from "react-router";
 import Timeline from "./../containers/Timeline";
+import Notification from "./../containers/Notification";
 import { Style as TimelineStyle } from "./Timeline";
 
 export interface IHomeProps extends RouteComponentProps<any, any> {
@@ -28,6 +29,7 @@ const Style = styled("div")`
 export const Home: React.SFC<IHomeProps> = (props: IHomeProps) => {
   return (
     <Style>
+      <Notification />
       <Timeline location={props.location} />
     </Style>
   );

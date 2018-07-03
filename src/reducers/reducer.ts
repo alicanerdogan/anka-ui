@@ -4,7 +4,8 @@ import {
   GET_REQUEST_TOKEN,
   GET_TIMELINE,
   GET_NEW_TIMELINE,
-  GET_OLD_TIMELINE
+  GET_OLD_TIMELINE,
+  MARK_ALL_AS_READ
 } from "./../actions/actions";
 import { drop } from "lodash-es";
 
@@ -12,10 +13,11 @@ export interface IRootState {
   accessToken?: string;
   requestToken?: string;
   timeline?: any[];
+  unseenTweetCount: number;
 }
 type Reducer = (T: IRootState, U: IAction) => IRootState;
 
-const DEFAULT_STATE: IRootState = {};
+const DEFAULT_STATE: IRootState = { unseenTweetCount: 0 };
 
 const RootReducer: Reducer = (state = DEFAULT_STATE, action) => {
   switch (action.type) {
@@ -29,12 +31,22 @@ const RootReducer: Reducer = (state = DEFAULT_STATE, action) => {
       return { ...state, timeline: action.payload };
     }
     case GET_NEW_TIMELINE.success: {
-      return { ...state, timeline: [...action.payload, ...state.timeline] };
+      return {
+        ...state,
+        timeline: [...action.payload, ...state.timeline],
+        unseenTweetCount: state.unseenTweetCount + action.payload.length
+      };
     }
     case GET_OLD_TIMELINE.success: {
       return {
         ...state,
         timeline: [...state.timeline, ...drop(action.payload, 1)]
+      };
+    }
+    case MARK_ALL_AS_READ: {
+      return {
+        ...state,
+        unseenTweetCount: 0
       };
     }
     default: {

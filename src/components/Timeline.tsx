@@ -11,6 +11,7 @@ export interface ITimelineProps {
   getNewTimeline: (sinceId: string) => void;
   getOldTimeline: (maxId: string) => void;
   autoRefresh?: boolean;
+  onSeenAllNew: () => void;
 }
 
 export const Style = styled.div`
@@ -100,6 +101,10 @@ export class Timeline extends React.Component<ITimelineProps, {}> {
     scrollTop,
     offsetHeight
   }: IScrollStatus): void => {
+    if (scrollTop === 0) {
+      const { onSeenAllNew } = this.props;
+      onSeenAllNew && onSeenAllNew();
+    }
     if (scrollHeight - scrollTop <= offsetHeight + 500) {
       const { timeline } = this.props;
       this.throttledGetOldTimeline(last<ITweet>(timeline).id_str);

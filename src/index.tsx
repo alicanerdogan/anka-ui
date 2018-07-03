@@ -8,6 +8,7 @@ import LoginWithTwitter from "./containers/LoginWithTwitter";
 import Callback from "./containers/Callback";
 import { Home } from "./components/Home";
 import { Tweet } from "./components/Tweet";
+import { Notification } from "./components/Notification";
 import reducer from "./reducers/reducer";
 import { injectGlobalStyles } from "./utils/styles";
 import { ITweet } from "./models/Tweet";
@@ -37,6 +38,7 @@ ReactDOM.render(
         <Route exact path="/auth_cb" component={Callback} />
         <Route exact path="/timeline" component={Home} />
         <Route exact path="/tweet" render={props => <Tweet tweet={tweet} />} />
+        <Route exact path="/notification" component={Notification} />
       </Switch>
     </Router>
   </Provider>,

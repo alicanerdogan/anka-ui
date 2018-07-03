@@ -3,6 +3,7 @@
     [
       "env",
       {
+        "modules": false,
         "targets": {
           "firefox": 60
         }
