@@ -1,5 +1,13 @@
 import { injectGlobal, css } from "emotion";
 
+export const media = {
+  mobile: (...args: any[]) => css`
+    @media (max-width: 720px) {
+      ${css(...args)};
+    }
+  `
+};
+
 export function injectGlobalStyles(): any {
   injectGlobal`
     ${FontFaces}

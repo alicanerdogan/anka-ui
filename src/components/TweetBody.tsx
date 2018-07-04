@@ -74,6 +74,9 @@ export const TweetBody: React.SFC<ITweetBodyProps> = (
   props: ITweetBodyProps
 ) => {
   const { tweet } = props;
+  const mediaItems = tweet.extended_entities
+    ? tweet.extended_entities.media
+    : tweet.entities.media;
   return (
     <Style>
       <Avatar profileImageUrl={tweet.user.profile_image_url_https} />
@@ -84,7 +87,7 @@ export const TweetBody: React.SFC<ITweetBodyProps> = (
           <TimeAgo>{getTimeAgo(new Date(tweet.created_at))}</TimeAgo>
         </Title>
         <TweetText tweet={tweet} />
-        {tweet.entities.media && <MediaViewer items={tweet.entities.media} />}
+        {mediaItems && <MediaViewer items={mediaItems} />}
         {tweet.quoted_status && <QuotedTweetBody tweet={tweet.quoted_status} />}
         <TweetStatus {...tweet as ITweetStatusProps} />
       </div>

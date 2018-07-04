@@ -68,6 +68,26 @@ export interface IMedia {
   expanded_url: string;
   type: MediaType | any;
   sizes: ISizes;
+  video_info?: IVideoInfo;
+}
+
+export type AspectRatio = [number, number];
+
+export enum VideoContentType {
+  MP4 = "video/mp4",
+  MPEG = "application/x-mpegURL"
+}
+
+export interface IVideoVariant {
+  bitrate?: number;
+  content_type: VideoContentType;
+  url: string;
+}
+
+export interface IVideoInfo {
+  aspect_ratio: AspectRatio[];
+  duration_millis: number;
+  variants: IVideoVariant[];
 }
 
 export interface ITweetEntities {

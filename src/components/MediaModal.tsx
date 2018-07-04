@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "react-emotion";
 
+import { VideoPlayer } from "./VideoPlayer";
 import { IMedia } from "./../models/Entity";
 
 export interface IMediaModalProps {
@@ -79,13 +80,19 @@ export class MediaModal extends React.Component<
       return null;
     }
 
+    const currentItem = items[index];
+
     return (
       <MediaModalStyle onClick={this.onClose}>
         <Container>
-          <Image
-            onClick={this.onSupressClick}
-            src={items[index].media_url_https}
-          />
+          {currentItem.video_info ? (
+            <VideoPlayer videoInfo={currentItem.video_info} />
+          ) : (
+            <Image
+              onClick={this.onSupressClick}
+              src={currentItem.media_url_https}
+            />
+          )}
         </Container>
       </MediaModalStyle>
     );

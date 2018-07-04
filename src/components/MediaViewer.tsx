@@ -3,6 +3,7 @@ import styled from "react-emotion";
 
 import { IMedia } from "./../models/Entity";
 import { MediaModal } from "./MediaModal";
+import { PlayOverlay } from "./PlayOverlay";
 
 export interface IMediaViewerProps {
   items: IMedia[];
@@ -21,6 +22,10 @@ export const Style = styled("div")`
   ${Image} {
     margin-right: 8px;
   }
+`;
+
+const ImageContainer = styled.div`
+  position: relative;
 `;
 
 interface IMediaViewerState {
@@ -60,11 +65,10 @@ export class MediaViewer extends React.Component<
           initialIndex={focusedImageIndex}
         />
         {items.map((item, i) => (
-          <Image
-            key={item.id_str}
-            src={item.media_url_https}
-            onClick={() => this.openModal(i)}
-          />
+          <ImageContainer key={item.id_str} onClick={() => this.openModal(i)}>
+            {item.video_info && <PlayOverlay />}
+            <Image src={item.media_url_https} />
+          </ImageContainer>
         ))}
       </Style>
     );
