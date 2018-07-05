@@ -7,6 +7,7 @@ import thunkMiddleware from "redux-thunk";
 import LoginWithTwitter from "./containers/LoginWithTwitter";
 import Callback from "./containers/Callback";
 import Likes from "./containers/Likes";
+import Title from "./containers/Title";
 import { Home } from "./components/Home";
 import { Tweet } from "./components/Tweet";
 import { Notification } from "./components/Notification";
@@ -34,14 +35,21 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <Switch>
-        <Route exact path="/" component={LoginWithTwitter} />
-        <Route exact path="/auth_cb" component={Callback} />
-        <Route exact path="/timeline" component={Home} />
-        <Route exact path="/likes" component={Likes} />
-        <Route exact path="/tweet" render={props => <Tweet tweet={tweet} />} />
-        <Route exact path="/notification" component={Notification} />
-      </Switch>
+      <React.Fragment>
+        <Title />
+        <Switch>
+          <Route exact path="/" component={LoginWithTwitter} />
+          <Route exact path="/auth_cb" component={Callback} />
+          <Route exact path="/timeline" component={Home} />
+          <Route exact path="/likes" component={Likes} />
+          <Route
+            exact
+            path="/tweet"
+            render={props => <Tweet tweet={tweet} />}
+          />
+          <Route exact path="/notification" component={Notification} />
+        </Switch>
+      </React.Fragment>
     </Router>
   </Provider>,
   document.getElementById("root")
