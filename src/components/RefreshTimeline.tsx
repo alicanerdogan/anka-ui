@@ -1,8 +1,8 @@
 import * as React from "react";
 
 export interface IRefreshTimelineProps {
-  getNewTimeline: (maxId: string) => void;
-  sinceId: string;
+  getTimeline: (query: { maxId?: string; sinceId?: string }) => void;
+  sinceId?: string;
 }
 
 export class RefreshTimeline extends React.Component<
@@ -11,9 +11,9 @@ export class RefreshTimeline extends React.Component<
 > {
   componentDidMount() {
     setInterval(() => {
-      const { getNewTimeline, sinceId } = this.props;
-      getNewTimeline(sinceId);
-    }, 120 * 1000);
+      const { getTimeline, sinceId } = this.props;
+      getTimeline({ sinceId });
+    }, 90 * 1000);
   }
 
   render(): JSX.Element {

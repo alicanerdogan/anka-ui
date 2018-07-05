@@ -1,25 +1,29 @@
 import { connect } from "react-redux";
+import { RouteComponentProps } from "react-router";
 import { IRootState } from "./../reducers/reducer";
-import { Timeline, ITimelineProps } from "./../components/Timeline";
-import { getTimeline } from "../actions/tweets";
-import { markAllAsRead } from "../actions/ui";
+import { Likes, ILikesProps } from "./../components/Likes";
+import { getLikes } from "../actions/tweets";
 import { parseQueryString } from "../utils/url";
+import { ITweet } from "./../models/Tweet";
 
 interface IStateProps {
-  timeline: any[];
+  likes?: ITweet[];
   accessToken: string;
 }
 
 interface IDispatchProps {
-  getTimeline: (query: ITimelineExtendedQueryParams) => void;
-  markAllAsRead: () => void;
+  getLikes: (T: ITimelineExtendedQueryParams) => void;
 }
 
-type MergeProps = (T: IStateProps, Y: IDispatchProps, U: any) => ITimelineProps;
+type MergeProps = (
+  T: IStateProps,
+  Y: IDispatchProps,
+  U: RouteComponentProps<any, any>
+) => ILikesProps;
 
 const mapStateToProps: (T: IRootState) => IStateProps = state => ({
   accessToken: state.accessToken,
-  timeline: state.timeline
+  likes: state.likes
 });
 
 const mergeProps: MergeProps = (stateProps, dispatchProps, ownProps) => {
@@ -27,16 +31,15 @@ const mergeProps: MergeProps = (stateProps, dispatchProps, ownProps) => {
   const token =
     accessToken || parseQueryString(ownProps.location.search).accessToken;
   return {
+    ...ownProps,
     ...restStateProps,
-    getTimeline: (query: ITimelineQueryParams) =>
-      dispatchProps.getTimeline({ accessToken: token, ...query }),
-    onSeenAllNew: () => dispatchProps.markAllAsRead(),
-    autoRefresh: true
+    getLikes: (query: ITimelineQueryParams) =>
+      dispatchProps.getLikes({ accessToken: token, ...query })
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getTimeline, markAllAsRead },
+  { getLikes },
   mergeProps
-)(Timeline);
+)(Likes);

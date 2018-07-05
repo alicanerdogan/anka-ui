@@ -7,11 +7,9 @@ import { ITweet } from "./../models/Tweet";
 
 export interface ITimelineProps {
   timeline?: any[];
-  getTimeline: () => void;
-  getNewTimeline: (sinceId: string) => void;
-  getOldTimeline: (maxId: string) => void;
+  getTimeline: (query?: ITimelineQueryParams) => void;
   autoRefresh?: boolean;
-  onSeenAllNew: () => void;
+  onSeenAllNew?: () => void;
 }
 
 export const Style = styled.div`
@@ -30,7 +28,7 @@ interface IScrollStatus {
 
 export class Timeline extends React.Component<ITimelineProps, {}> {
   onScrollRef: (ev: React.SyntheticEvent) => void;
-  throttledGetOldTimeline: (maxId: string) => void;
+  throttledGetOldTimeline: (query: ITimelineQueryParams) => void;
   element?: HTMLElement;
   scrollStatus?: IScrollStatus;
 
@@ -46,7 +44,7 @@ export class Timeline extends React.Component<ITimelineProps, {}> {
         offsetHeight: element.offsetHeight
       });
     };
-    this.throttledGetOldTimeline = throttle(this.props.getOldTimeline, 10000);
+    this.throttledGetOldTimeline = throttle(this.props.getTimeline, 10000);
   }
 
   componentDidMount() {
@@ -107,21 +105,26 @@ export class Timeline extends React.Component<ITimelineProps, {}> {
     }
     if (scrollHeight - scrollTop <= offsetHeight + 500) {
       const { timeline } = this.props;
-      this.throttledGetOldTimeline(last<ITweet>(timeline).id_str);
+      this.throttledGetOldTimeline({ maxId: last<ITweet>(timeline).id_str });
     }
   };
 
   render(): JSX.Element {
-    const { timeline, autoRefresh, getNewTimeline } = this.props;
+    const { timeline, autoRefresh, getTimeline } = this.props;
     if (!timeline) {
       return null;
     }
+
+    const firstTweet: ITweet = first<ITweet>(timeline);
 
     return (
       <Style onScroll={this.onScrollRef} innerRef={el => (this.element = el)}>
         {autoRefresh && (
           <RefreshTimeline
-            {...{ getNewTimeline, sinceId: first<ITweet>(timeline).id_str }}
+            {...{
+              getTimeline,
+              sinceId: firstTweet && firstTweet.id_str
+            }}
           />
         )}
         {timeline.map(tweet => <Tweet key={tweet.id_str} tweet={tweet} />)}

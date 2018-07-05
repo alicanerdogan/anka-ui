@@ -1,44 +1,46 @@
 import {
   GET_TIMELINE,
-  GET_NEW_TIMELINE,
-  GET_OLD_TIMELINE,
-  DispatchFn
+  DispatchFn,
+  GET_LIKES,
+  TIMELINE_QUERY_MODE
 } from "./actions";
 import { createAction, IAction } from "./../utils/action";
 import * as API from "../utils/rest";
 
-export const getTimeline = (accessToken: string) => async (
+function getTimelineQueryMode(
+  query: ITimelineExtendedQueryParams
+): TIMELINE_QUERY_MODE {
+  if (query.maxId) {
+    return TIMELINE_QUERY_MODE.APPEND;
+  }
+  if (query.sinceId) {
+    return TIMELINE_QUERY_MODE.PREPEND;
+  }
+  return TIMELINE_QUERY_MODE.INITIAL;
+}
+
+export const getTimeline = (query: ITimelineExtendedQueryParams) => async (
   dispatch: DispatchFn
 ) => {
   dispatch(createAction(GET_TIMELINE.default));
   try {
-    const payload = await API.getTimeline({ accessToken });
+    const tweets = await API.getTimeline(query);
+    const payload = { mode: getTimelineQueryMode(query), tweets };
     dispatch(createAction(GET_TIMELINE.success, payload));
   } catch (error) {
     dispatch(createAction(GET_TIMELINE.failure, undefined, error));
   }
 };
 
-export const getNewTimeline = (accessToken: string, since_id: string) => async (
+export const getLikes = (query: ITimelineExtendedQueryParams) => async (
   dispatch: DispatchFn
 ) => {
-  dispatch(createAction(GET_NEW_TIMELINE.default));
+  dispatch(createAction(GET_LIKES.default));
   try {
-    const payload = await API.getTimeline({ accessToken, since_id });
-    dispatch(createAction(GET_NEW_TIMELINE.success, payload));
+    const tweets = await API.getLikes(query);
+    const payload = { mode: getTimelineQueryMode(query), tweets };
+    dispatch(createAction(GET_LIKES.success, payload));
   } catch (error) {
-    dispatch(createAction(GET_NEW_TIMELINE.failure, undefined, error));
-  }
-};
-
-export const getOldTimeline = (accessToken: string, max_id: string) => async (
-  dispatch: DispatchFn
-) => {
-  dispatch(createAction(GET_OLD_TIMELINE.default));
-  try {
-    const payload = await API.getTimeline({ accessToken, max_id });
-    dispatch(createAction(GET_OLD_TIMELINE.success, payload));
-  } catch (error) {
-    dispatch(createAction(GET_OLD_TIMELINE.failure, undefined, error));
+    dispatch(createAction(GET_LIKES.failure, undefined, error));
   }
 };

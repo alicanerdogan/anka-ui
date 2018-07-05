@@ -24,17 +24,38 @@ export async function getAccessToken(
   return text;
 }
 
-export async function getTimeline(query: {
-  accessToken: string;
-  since_id?: string;
-  max_id?: string;
-}) {
-  const resp = await fetch(`/api/timeline?${getQueryString(query)}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json"
+export async function getTimeline(query: ITimelineExtendedQueryParams) {
+  const resp = await fetch(
+    `/api/timeline?${getQueryString({
+      accessToken: query.accessToken,
+      since_id: query.sinceId,
+      max_id: query.maxId
+    })}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
     }
-  });
+  );
+  const payload = await resp.json();
+  return payload;
+}
+
+export async function getLikes(query: ITimelineExtendedQueryParams) {
+  const resp = await fetch(
+    `/api/likes?${getQueryString({
+      accessToken: query.accessToken,
+      since_id: query.sinceId,
+      max_id: query.maxId
+    })}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+  );
   const payload = await resp.json();
   return payload;
 }
