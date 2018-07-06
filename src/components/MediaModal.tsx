@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "react-emotion";
 
 import { VideoPlayer } from "./VideoPlayer";
-import { IMedia } from "./../models/Entity";
+import { IMedia } from "../models/Entity";
 
 export interface IMediaModalProps {
   items: IMedia[];

@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "react-emotion";
 import { RouteComponentProps } from "react-router";
 import { Timeline, Style as TimelineStyle, ITimelineProps } from "./Timeline";
-import { media } from "./../utils/styles";
+import { media } from "../utils/styles";
 import { ITweet } from "../models/Tweet";
 
 export const LikesStyle = styled("div")`

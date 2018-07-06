@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import { IRootState } from "./../reducers/reducer";
-import { Title, ITitleProps } from "./../components/Title";
+import { IRootState } from "../reducers/reducer";
+import { Title, ITitleProps } from "../components/Title";
 
 const mapStateToProps: (T: IRootState) => ITitleProps = ({
   unseenTweetCount

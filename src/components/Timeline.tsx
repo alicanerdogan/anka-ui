@@ -3,7 +3,7 @@ import styled from "react-emotion";
 import { throttle, first, last } from "lodash-es";
 import { Tweet, Style as TweetStyle } from "./Tweet";
 import { RefreshTimeline } from "./RefreshTimeline";
-import { ITweet } from "./../models/Tweet";
+import { ITweet } from "../models/Tweet";
 
 export interface ITimelineProps {
   timeline?: any[];

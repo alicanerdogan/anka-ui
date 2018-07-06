@@ -1,5 +1,5 @@
 import { GET_ACCESS_TOKEN, GET_REQUEST_TOKEN, DispatchFn } from "./actions";
-import { createAction } from "./../utils/action";
+import { createAction } from "../utils/action";
 import * as API from "../utils/rest";
 
 export const getAccessToken = (

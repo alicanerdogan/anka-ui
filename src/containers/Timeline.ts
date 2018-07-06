@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import { IRootState } from "./../reducers/reducer";
-import { Timeline, ITimelineProps } from "./../components/Timeline";
+import { IRootState } from "../reducers/reducer";
+import { Timeline, ITimelineProps } from "../components/Timeline";
 import { getTimeline } from "../actions/tweets";
 import { markAllAsRead } from "../actions/ui";
 import { parseQueryString } from "../utils/url";

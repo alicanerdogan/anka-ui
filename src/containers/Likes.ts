@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
 import { RouteComponentProps } from "react-router";
-import { IRootState } from "./../reducers/reducer";
-import { Likes, ILikesProps } from "./../components/Likes";
+import { IRootState } from "../reducers/reducer";
+import { Likes, ILikesProps } from "../components/Likes";
 import { getLikes } from "../actions/tweets";
 import { parseQueryString } from "../utils/url";
-import { ITweet } from "./../models/Tweet";
+import { ITweet } from "../models/Tweet";
 
 interface IStateProps {
   likes?: ITweet[];

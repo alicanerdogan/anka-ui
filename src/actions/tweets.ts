@@ -4,7 +4,7 @@ import {
   GET_LIKES,
   TIMELINE_QUERY_MODE
 } from "./actions";
-import { createAction, IAction } from "./../utils/action";
+import { createAction, IAction } from "../utils/action";
 import * as API from "../utils/rest";
 
 function getTimelineQueryMode(

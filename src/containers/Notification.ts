@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
-import { IRootState } from "./../reducers/reducer";
-import { Notification, INotificationProps } from "./../components/Notification";
-import { markAllAsRead } from "./../actions/ui";
+import { IRootState } from "../reducers/reducer";
+import { Notification, INotificationProps } from "../components/Notification";
+import { markAllAsRead } from "../actions/ui";
 
 interface IStateProps {
   tweetCount: number;

@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "react-emotion";
 
-import { IMedia } from "./../models/Entity";
+import { IMedia } from "../models/Entity";
 import { MediaModal } from "./MediaModal";
 import { PlayOverlay } from "./PlayOverlay";
 

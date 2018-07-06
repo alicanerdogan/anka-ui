@@ -1,10 +1,10 @@
 import * as React from "react";
 import styled from "react-emotion";
 import { RouteComponentProps } from "react-router";
-import Timeline from "./../containers/Timeline";
-import Notification from "./../containers/Notification";
+import Timeline from "../containers/Timeline";
+import Notification from "../containers/Notification";
 import { Style as TimelineStyle } from "./Timeline";
-import { media } from "./../utils/styles";
+import { media } from "../utils/styles";
 
 export interface IHomeProps extends RouteComponentProps<any, any> {
   children: JSX.Element;

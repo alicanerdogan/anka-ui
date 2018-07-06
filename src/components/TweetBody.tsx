@@ -9,7 +9,7 @@ import {
   Style as TweetStatusStyle
 } from "./TweetStatus";
 import { MediaViewer, Style as MediaViewerStyle } from "./MediaViewer";
-import { getTimeAgo } from "./../utils/date";
+import { getTimeAgo } from "../utils/date";
 
 export interface ITweetBodyProps {
   tweet: ITweet;
