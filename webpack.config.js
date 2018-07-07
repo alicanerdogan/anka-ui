@@ -13,8 +13,8 @@ module.exports = {
     compress: true,
     historyApiFallback: true,
     proxy: {
-      '/api': {
-        target: 'http://localhost:3000'
+      "/api": {
+        target: "http://localhost:3000"
       }
     }
   },
@@ -25,9 +25,15 @@ module.exports = {
     rules: [
       {
         test: /\.(png|svg|jpg|gif)$/,
-        loader: 'file-loader'
+        loader: "file-loader",
+        options: {
+          publicPath: "/"
+        }
       },
-      { test: /\.tsx?$/, loaders: ["babel-loader", "awesome-typescript-loader"] },
+      {
+        test: /\.tsx?$/,
+        loaders: ["babel-loader", "awesome-typescript-loader"]
+      },
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
     ]
   },

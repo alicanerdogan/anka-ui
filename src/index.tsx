@@ -7,6 +7,8 @@ import thunkMiddleware from "redux-thunk";
 import LoginWithTwitter from "./containers/LoginWithTwitter";
 import Callback from "./containers/Callback";
 import Likes from "./containers/Likes";
+import Lists from "./containers/Lists";
+import List from "./containers/List";
 import Title from "./containers/Title";
 import { Home } from "./components/Home";
 import { Tweet } from "./components/Tweet";
@@ -42,6 +44,8 @@ ReactDOM.render(
           <Route exact path="/auth_cb" component={Callback} />
           <Route exact path="/timeline" component={Home} />
           <Route exact path="/likes" component={Likes} />
+          <Route exact path="/lists" component={Lists} />
+          <Route exact path="/lists/:listId" component={List} />
           <Route
             exact
             path="/tweet"

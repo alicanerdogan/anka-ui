@@ -12,5 +12,7 @@ export const GET_REQUEST_TOKEN = createAsyncActionType("GET_REQUEST_TOKEN");
 export const GET_ACCESS_TOKEN = createAsyncActionType("GET_ACCESS_TOKEN");
 export const GET_TIMELINE = createAsyncActionType("GET_TIMELINE");
 export const GET_LIKES = createAsyncActionType("GET_LIKES");
+export const GET_LISTS = createAsyncActionType("GET_LISTS");
+export const GET_LIST = createAsyncActionType("GET_LIST");
 
 export const MARK_ALL_AS_READ = "MARK_ALL_AS_READ";
