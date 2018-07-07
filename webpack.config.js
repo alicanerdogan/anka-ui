@@ -4,7 +4,8 @@ module.exports = {
   entry: "./src/index.tsx",
   output: {
     filename: "index.[hash].js",
-    path: __dirname + "/dist"
+    path: __dirname + "/dist",
+    publicPath: "/"
   },
   devtool: "source-map",
   devServer: {
@@ -25,10 +26,7 @@ module.exports = {
     rules: [
       {
         test: /\.(png|svg|jpg|gif)$/,
-        loader: "file-loader",
-        options: {
-          publicPath: "/"
-        }
+        loader: "file-loader"
       },
       {
         test: /\.tsx?$/,

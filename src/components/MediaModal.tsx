@@ -54,6 +54,12 @@ export class MediaModal extends React.Component<
     this.state = { index: this.props.initialIndex || 0 };
   }
 
+  componentWillReceiveProps(newProps: IMediaModalProps) {
+    if (!this.props.isOpen && newProps.isOpen) {
+      this.setState(state => ({ ...state, index: newProps.initialIndex || 0 }));
+    }
+  }
+
   onNext = () => {
     const count = this.props.items.length;
     this.setState(state => ({ ...state, index: (state.index + 1) % count }));
