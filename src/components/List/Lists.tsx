@@ -16,7 +16,10 @@ export const ListsStyle = styled.div`
   }
 `;
 
-export interface IListsProps { lists?: IList[]; getLists: () => void; }
+export interface IListsProps {
+  lists?: IList[];
+  getLists: () => void;
+}
 
 export class Lists extends React.Component<IListsProps, {}> {
   componentDidMount() {
@@ -32,6 +35,14 @@ export class Lists extends React.Component<IListsProps, {}> {
       return null;
     }
 
-    return <ListsStyle>{lists.map(list => <PopUp key={list.id_str}><ListBadge list={list} /></PopUp>)}</ListsStyle>;
+    return (
+      <ListsStyle>
+        {lists.map(list => (
+          <PopUp key={list.id_str}>
+            <ListBadge list={list} />
+          </PopUp>
+        ))}
+      </ListsStyle>
+    );
   }
 }

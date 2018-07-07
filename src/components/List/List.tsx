@@ -40,7 +40,8 @@ export const List: React.SFC<IListProps> = (props: IListProps) => {
   const { getList, tweets } = props;
   const timelineProps: ITimelineProps = {
     getTimeline: getList,
-    timeline: tweets
+    timeline: tweets,
+    autoRefresh: true
   };
   return (
     <ListStyle>

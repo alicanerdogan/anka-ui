@@ -8,8 +8,6 @@ export interface ITweetProps {
   tweet: ITweet;
 }
 
-interface ITweetState {}
-
 export const Style = styled.div`
   border-bottom: solid 1px #eee;
 
@@ -22,7 +20,7 @@ export const Style = styled.div`
   }
 `;
 
-export class Tweet extends React.Component<ITweetProps, ITweetState> {
+export class Tweet extends React.Component<ITweetProps, {}> {
   constructor(props: ITweetProps) {
     super(props);
 

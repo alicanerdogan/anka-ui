@@ -1,7 +1,9 @@
 {
   "extends": [
     "tslint:latest",
-    "tslint-react"
+    "tslint-react",
+    "tslint-eslint-rules",
+    "tslint-config-prettier"
   ],
   "rules": {
     "jsx-wrap-multiline": false,
@@ -15,6 +17,7 @@
     "no-unused-expression": false,
     "jsx-no-lambda": false,
     "jsx-no-multiline-js": false,
-    "max-classes-per-file": false
+    "max-classes-per-file": false,
+    "no-var-requires": false
   }
 }

@@ -76,7 +76,10 @@ export async function getLists(accessToken: string) {
   return payload;
 }
 
-export async function getList(listId: string, query: ITimelineExtendedQueryParams) {
+export async function getList(
+  listId: string,
+  query: ITimelineExtendedQueryParams
+) {
   const resp = await fetch(
     `/api/lists/${listId}/?${getQueryString({
       accessToken: query.accessToken,
