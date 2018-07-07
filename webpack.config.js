@@ -40,7 +40,8 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: "Anka",
-      template: "./src/index.html"
+      template: "./src/index.html",
+      favicon: "./src/assets/icons/favicon.ico"
     })
   ]
 };
