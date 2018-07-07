@@ -10,7 +10,7 @@ export interface IHomeProps extends RouteComponentProps<any, any> {
   children: JSX.Element;
 }
 
-const Style = styled("div")`
+export const Style = styled("div")`
   position: relative;
   height: calc(100vh - 48px);
   margin: 24px;

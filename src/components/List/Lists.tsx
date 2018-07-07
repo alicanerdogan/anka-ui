@@ -8,6 +8,9 @@ import { IList } from "../../models/List";
 export const ListsStyle = styled.div`
   display: flex;
   margin: 0 -20px;
+  position: relative;
+  height: 100vh;
+  padding: 24px;
 
   ${PopUpStyle} {
     margin: 0 20px;

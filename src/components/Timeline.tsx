@@ -14,6 +14,8 @@ export interface ITimelineProps {
 
 export const Style = styled.div`
   overflow: hidden;
+  margin: 0 auto;
+  max-width: 900px;
 
   &:hover {
     overflow: auto;
