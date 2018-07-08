@@ -4,6 +4,7 @@ import styled from "react-emotion";
 import { ListBadge, ListBadgeStyle } from "./ListBadge";
 import { PopUp, PopUpStyle } from "./PopUp";
 import { IList } from "../../models/List";
+import { media } from "../../utils/styles";
 
 export const ListsStyle = styled.div`
   display: flex;
@@ -16,7 +17,18 @@ export const ListsStyle = styled.div`
     margin: 0 20px;
     width: ${100 / 3}%;
     height: 200px;
+
+    ${media.mobile`
+      margin: 0 10px;
+      width: ${100 / 2}%;
+      height: 140px;
+    `};
   }
+
+  ${media.mobile`
+    padding: 16px;
+    margin: 0 -10px;
+  `};
 `;
 
 export interface IListsProps {

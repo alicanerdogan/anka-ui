@@ -8,6 +8,12 @@ export const media = {
   `
 };
 
+export const whereHoverAvailable = (...args: any[]) => css`
+  @media (hover: none) {
+    ${css(...args)};
+  }
+`;
+
 export function injectGlobalStyles(): any {
   injectGlobal`
     ${FontFaces}

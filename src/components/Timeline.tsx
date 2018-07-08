@@ -4,6 +4,7 @@ import { throttle, first, last } from "lodash-es";
 import { Tweet, Style as TweetStyle } from "./Tweet";
 import { RefreshTimeline } from "./RefreshTimeline";
 import { ITweet } from "../models/Tweet";
+import { media } from "./../utils/styles";
 
 export interface ITimelineProps {
   timeline?: any[];
@@ -13,13 +14,24 @@ export interface ITimelineProps {
 }
 
 export const Style = styled.div`
-  overflow: hidden;
   margin: 0 auto;
   max-width: 900px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: white;
+  box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.11),
+    0 5px 15px 0 rgba(0, 0, 0, 0.08);
 
   &:hover {
     overflow: auto;
   }
+
+  ${media.mobile`
+    overflow: auto;
+    border-radius: 0;
+    box-shadow: none;
+    border-left: solid 1px #eee;
+  `};
 `;
 
 interface IScrollStatus {
