@@ -7,6 +7,7 @@ import {
   GET_LISTS,
   GET_LIST,
   GET_TWEET,
+  GET_REPLIES,
   MARK_ALL_AS_READ,
   TIMELINE_QUERY_MODE
 } from "../actions/actions";
@@ -22,6 +23,7 @@ export interface IRootState {
   lists?: IList[];
   listTimelines: { [key: string]: ITweet[] };
   activeTweet?: ITweet;
+  activeReplies?: ITweet[];
   unseenTweetCount: number;
 }
 type Reducer = (T: IRootState, U: IAction) => IRootState;
@@ -41,10 +43,13 @@ const RootReducer: Reducer = (state = DEFAULT_STATE, action) => {
       return { ...state, requestToken: action.payload };
     }
     case GET_TWEET.default: {
-      return { ...state, activeTweet: null };
+      return { ...state, activeTweet: null, activeReplies: null };
     }
     case GET_TWEET.success: {
       return { ...state, activeTweet: action.payload };
+    }
+    case GET_REPLIES.success: {
+      return { ...state, activeReplies: action.payload };
     }
     case GET_TIMELINE.success: {
       const payload: { tweets: ITweet[]; mode: TIMELINE_QUERY_MODE } =

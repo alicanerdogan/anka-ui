@@ -9,6 +9,7 @@ import {
   Style as TweetStatusStyle
 } from "./TweetStatus";
 import { MediaViewer, Style as MediaViewerStyle } from "./MediaViewer";
+import { WrapperLink } from "./List/WrapperLink";
 import { getTimeAgo } from "../utils/date";
 
 export interface ITweetBodyProps {
@@ -16,6 +17,7 @@ export interface ITweetBodyProps {
 }
 
 const QuotedTweetBodyStyle = styled.div`
+  position: relative;
   padding: 12px;
   border: solid 1px #ccc;
   border-radius: 3px;
@@ -101,6 +103,7 @@ export const QuotedTweetBody: React.SFC<ITweetBodyProps> = (
   const { tweet } = props;
   return (
     <QuotedTweetBodyStyle>
+      <WrapperLink to={`/tweets/${tweet.id_str}`} />
       <Title>
         <Name>{tweet.user.name}</Name>
         <Alias>{`@${tweet.user.screen_name}`}</Alias>

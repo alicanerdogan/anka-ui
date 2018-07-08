@@ -2,11 +2,14 @@ import * as React from "react";
 import styled from "react-emotion";
 import { ITweet } from "../models/Tweet";
 import { TweetBody, Style as TweetBodyStyle } from "./TweetBody";
+import { Replies } from "../components/Replies";
 import { media } from "./../utils/styles";
 
 export const TweetDetailsStyle = styled.div`
   position: relative;
   margin: 24px 16px;
+  max-height: calc(100vh - 48px);
+  overflow: auto;
 
   ${TweetBodyStyle} {
     padding: 24px;
@@ -35,7 +38,9 @@ export const TweetDetailsStyle = styled.div`
 export interface ITweetDetailsProps {
   tweetId: string;
   tweet?: ITweet;
+  replies?: ITweet[];
   getTweet: () => void;
+  getReplies: () => void;
 }
 
 interface ITweetDetailsState {}
@@ -70,6 +75,10 @@ export class TweetDetails extends React.Component<
     return (
       <TweetDetailsStyle>
         <TweetBody tweet={tweet} />
+        <Replies
+          replies={this.props.replies}
+          getReplies={this.props.getReplies}
+        />
       </TweetDetailsStyle>
     );
   }

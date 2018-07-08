@@ -2,16 +2,22 @@ import { connect } from "react-redux";
 import { RouteComponentProps } from "react-router";
 import { IRootState } from "../reducers/reducer";
 import { TweetDetails, ITweetDetailsProps } from "../components/TweetDetails";
-import { getTweet } from "../actions/tweets";
+import { getTweet, getReplies } from "../actions/tweets";
 import { ITweet } from "../models/Tweet";
 
 interface IStateProps {
   tweet?: ITweet;
   accessToken: string;
+  replies?: ITweet[];
 }
 
 interface IDispatchProps {
   getTweet: (tweetId: string, accessToken: string) => void;
+  getReplies: (
+    screenName: string,
+    tweetId: string,
+    accessToken: string
+  ) => void;
 }
 
 type MergeProps = (
@@ -22,7 +28,8 @@ type MergeProps = (
 
 const mapStateToProps: (T: IRootState) => IStateProps = state => ({
   accessToken: state.accessToken,
-  tweet: state.activeTweet
+  tweet: state.activeTweet,
+  replies: state.activeReplies
 });
 
 const mergeProps: MergeProps = (stateProps, dispatchProps, ownProps) => {
@@ -32,12 +39,18 @@ const mergeProps: MergeProps = (stateProps, dispatchProps, ownProps) => {
     ...ownProps,
     ...restStateProps,
     getTweet: () => dispatchProps.getTweet(tweetId, accessToken),
+    getReplies: () =>
+      dispatchProps.getReplies(
+        stateProps.tweet.user.screen_name,
+        tweetId,
+        accessToken
+      ),
     tweetId
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getTweet },
+  { getTweet, getReplies },
   mergeProps
 )(TweetDetails);

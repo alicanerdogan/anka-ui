@@ -3,6 +3,7 @@ import {
   DispatchFn,
   GET_LIKES,
   GET_TWEET,
+  GET_REPLIES,
   TIMELINE_QUERY_MODE
 } from "./actions";
 import { createAction, IAction } from "../utils/action";
@@ -55,5 +56,19 @@ export const getTweet = (tweetId: string, accessToken: string) => async (
     dispatch(createAction(GET_TWEET.success, payload));
   } catch (error) {
     dispatch(createAction(GET_TWEET.failure, undefined, error));
+  }
+};
+
+export const getReplies = (
+  screenName: string,
+  tweetId: string,
+  accessToken: string
+) => async (dispatch: DispatchFn) => {
+  dispatch(createAction(GET_REPLIES.default));
+  try {
+    const payload = await API.getReplies(screenName, tweetId, accessToken);
+    dispatch(createAction(GET_REPLIES.success, payload));
+  } catch (error) {
+    dispatch(createAction(GET_REPLIES.failure, undefined, error));
   }
 };

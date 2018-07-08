@@ -112,3 +112,24 @@ export async function getTweet(tweetId: string, accessToken: string) {
   const payload = await resp.json();
   return payload;
 }
+
+export async function getReplies(
+  screenName: string,
+  tweetId: string,
+  accessToken: string
+) {
+  const resp = await fetch(
+    `/api/tweets/${tweetId}/replies/?${getQueryString({
+      accessToken,
+      screenName
+    })}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+  );
+  const payload = await resp.json();
+  return payload;
+}

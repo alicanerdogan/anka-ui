@@ -9,8 +9,10 @@ export interface IVideoPlayerProps {
 }
 
 export const VideoPlayerStyle = styled.div`
-  max-width: 100vw;
-  max-height: 100vh;
+  video {
+    max-width: 100vw;
+    max-height: 100vh;
+  }
 `;
 
 export const VideoPlayer: React.SFC<IVideoPlayerProps> = (
