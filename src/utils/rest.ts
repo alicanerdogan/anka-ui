@@ -96,3 +96,19 @@ export async function getList(
   const payload = await resp.json();
   return payload;
 }
+
+export async function getTweet(tweetId: string, accessToken: string) {
+  const resp = await fetch(
+    `/api/tweets/${tweetId}/?${getQueryString({
+      accessToken
+    })}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+  );
+  const payload = await resp.json();
+  return payload;
+}

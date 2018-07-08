@@ -2,6 +2,7 @@ import {
   GET_TIMELINE,
   DispatchFn,
   GET_LIKES,
+  GET_TWEET,
   TIMELINE_QUERY_MODE
 } from "./actions";
 import { createAction, IAction } from "../utils/action";
@@ -42,5 +43,17 @@ export const getLikes = (query: ITimelineExtendedQueryParams) => async (
     dispatch(createAction(GET_LIKES.success, payload));
   } catch (error) {
     dispatch(createAction(GET_LIKES.failure, undefined, error));
+  }
+};
+
+export const getTweet = (tweetId: string, accessToken: string) => async (
+  dispatch: DispatchFn
+) => {
+  dispatch(createAction(GET_TWEET.default));
+  try {
+    const payload = await API.getTweet(tweetId, accessToken);
+    dispatch(createAction(GET_TWEET.success, payload));
+  } catch (error) {
+    dispatch(createAction(GET_TWEET.failure, undefined, error));
   }
 };
