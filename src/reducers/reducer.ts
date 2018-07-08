@@ -24,7 +24,11 @@ export interface IRootState {
 }
 type Reducer = (T: IRootState, U: IAction) => IRootState;
 
-const DEFAULT_STATE: IRootState = { unseenTweetCount: 0, listTimelines: {} };
+const DEFAULT_STATE: IRootState = {
+  accessToken: localStorage.getItem("accessToken"),
+  unseenTweetCount: 0,
+  listTimelines: {}
+};
 
 const RootReducer: Reducer = (state = DEFAULT_STATE, action) => {
   switch (action.type) {

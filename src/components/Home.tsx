@@ -13,7 +13,7 @@ export interface IHomeProps extends RouteComponentProps<any, any> {
 export const Style = styled("div")`
   position: relative;
   height: calc(100vh - 48px);
-  margin: 24px;
+  margin: 24px 16px;
 
   ${TimelineStyle} {
     position: absolute;

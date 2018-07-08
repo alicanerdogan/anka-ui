@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "react-emotion";
 import { Link } from "react-router-dom";
+import { media } from "../utils/styles";
 
 const iconSrc = require("./../assets/icons/icon.svg");
 const homeSrc = require("./../assets/home.svg");
@@ -9,8 +10,7 @@ const folderSrc = require("./../assets/folder.svg");
 
 const Icon = styled.img`
   display: block;
-  width: 48px;
-  height: 80px;
+  width: 100%;
   padding: 16px 0;
   margin: 0 auto;
 `;
@@ -37,6 +37,8 @@ const Links = styled.div`
 `;
 
 export const SidebarStyle = styled.div`
+  position: relative;
+  height: calc(100vh - 48px);
   margin: 24px 16px;
   width: 64px;
   max-height: 100vh;
@@ -44,6 +46,12 @@ export const SidebarStyle = styled.div`
   background: white;
   box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.11),
     0 5px 15px 0 rgba(0, 0, 0, 0.08);
+
+  ${media.mobile`
+    height: 100vh;
+    width: 48px;
+    margin: 0;
+  `};
 `;
 
 export interface ISidebarProps {}

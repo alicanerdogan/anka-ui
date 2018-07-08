@@ -9,11 +9,17 @@ export class RefreshTimeline extends React.Component<
   IRefreshTimelineProps,
   {}
 > {
+  timerHandle: any;
+
   componentDidMount() {
-    setInterval(() => {
+    this.timerHandle = setInterval(() => {
       const { getTimeline, sinceId } = this.props;
       getTimeline({ sinceId });
     }, 90 * 1000);
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timerHandle);
   }
 
   render(): JSX.Element {

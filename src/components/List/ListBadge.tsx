@@ -34,7 +34,7 @@ export const ListBadge: React.SFC<IListBadgeProps> = (
     <ListBadgeStyle>
       <Title>{props.list.name}</Title>
       <Description>{props.list.description}</Description>
-      <WrapperLink to={`lists/${props.list.id_str}${window.location.search}`} />
+      <WrapperLink to={`lists/${props.list.id_str}`} />
     </ListBadgeStyle>
   );
 };

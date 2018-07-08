@@ -9,6 +9,7 @@ export const getAccessToken = (
   dispatch(createAction(GET_ACCESS_TOKEN.default));
   try {
     const payload = await API.getAccessToken(oauth_token, oauth_verifier);
+    localStorage.setItem("accessToken", payload);
     dispatch(createAction(GET_ACCESS_TOKEN.success, payload));
   } catch (error) {
     dispatch(createAction(GET_ACCESS_TOKEN.failure, undefined, error));
