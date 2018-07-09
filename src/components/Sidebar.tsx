@@ -1,12 +1,13 @@
 import * as React from "react";
-import styled from "react-emotion";
+import styled, { css } from "react-emotion";
 import { Link } from "react-router-dom";
 import { media } from "../utils/styles";
 
+import { Favorite } from "../assets/Favorite.svg";
+import { Home } from "../assets/Home.svg";
+import { Folder } from "../assets/Folder.svg";
+
 const iconSrc = require("./../assets/icons/icon.svg");
-const homeSrc = require("./../assets/home.svg");
-const favoriteSrc = require("./../assets/favorite.svg");
-const folderSrc = require("./../assets/folder.svg");
 
 const Icon = styled.img`
   display: block;
@@ -15,12 +16,28 @@ const Icon = styled.img`
   margin: 0 auto;
 `;
 
-const LinkIcon = styled.img`
+const IconStyle = css`
   display: block;
-  width: 32px;
-  height: 48px;
-  padding: 12px 0;
-  margin: 0 auto;
+  width: 100%;
+  margin: 16px auto;
+  color: #888;
+
+  &:hover {
+    fill: #408ecc;
+    stroke-width: 0;
+  }
+`;
+
+const StyledFavoriteIcon = styled(Favorite)`
+  ${IconStyle};
+`;
+
+const StyledHomeIcon = styled(Home)`
+  ${IconStyle};
+`;
+
+const StyledFolderIcon = styled(Folder)`
+  ${IconStyle};
 `;
 
 const StyledLink = styled(Link)`
@@ -71,13 +88,13 @@ export class Sidebar extends React.Component<ISidebarProps, ISidebarState> {
         <Icon src={iconSrc} />
         <Links>
           <StyledLink to="/timeline">
-            <LinkIcon src={homeSrc} />
+            <StyledHomeIcon />
           </StyledLink>
           <StyledLink to="/likes">
-            <LinkIcon src={favoriteSrc} />
+            <StyledFavoriteIcon />
           </StyledLink>
           <StyledLink to="/lists">
-            <LinkIcon src={folderSrc} />
+            <StyledFolderIcon />
           </StyledLink>
         </Links>
       </SidebarStyle>

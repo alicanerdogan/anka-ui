@@ -1,9 +1,11 @@
 import * as React from "react";
-import styled from "react-emotion";
+import styled, { css } from "react-emotion";
 
 import retweet from "./../assets/retweet.svg";
 import reply from "./../assets/reply.svg";
-import favorite from "./../assets/favorite.svg";
+import { Favorite } from "../assets/Favorite.svg";
+import { Reply } from "../assets/Reply.svg";
+import { Retweet } from "../assets/Retweet.svg";
 
 export interface ITweetStatusProps {
   retweet_count: number;
@@ -11,6 +13,40 @@ export interface ITweetStatusProps {
   favorited: boolean;
   retweeted: boolean;
 }
+
+const IconStyle = css`
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  color: #888;
+`;
+
+const StyledFavoriteIcon = styled(Favorite)`
+  ${IconStyle};
+
+  &:hover {
+    stroke-width: 0;
+    fill: #f06292;
+  }
+`;
+
+const StyledRetweetIcon = styled(Retweet)`
+  ${IconStyle};
+
+  &:hover {
+    stroke-width: 2;
+    color: #408ecc;
+  }
+`;
+
+const StyledReplyIcon = styled(Reply)`
+  ${IconStyle};
+
+  &:hover {
+    stroke-width: 2;
+    color: #408ecc;
+  }
+`;
 
 const Icon = styled.img`
   width: 20px;
@@ -39,11 +75,11 @@ export const TweetStatus: React.SFC<ITweetStatusProps> = (
 ) => {
   return (
     <Style>
-      <Icon src={favorite} />
+      <StyledFavoriteIcon />
       <Count>{props.favorite_count}</Count>
-      <Icon src={retweet} />
+      <StyledRetweetIcon />
       <Count>{props.retweet_count}</Count>
-      <Icon src={reply} />
+      <StyledReplyIcon />
     </Style>
   );
 };

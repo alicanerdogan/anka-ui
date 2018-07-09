@@ -23,11 +23,13 @@ export const Style = styled.div`
     0 5px 15px 0 rgba(0, 0, 0, 0.08);
 
   &:hover {
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   ${media.mobile`
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     border-radius: 0;
     box-shadow: none;
     border-left: solid 1px #eee;

@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "react-emotion";
+import { Link } from "react-router-dom";
 import { ITweet } from "../models/Tweet";
 import { Avatar, Style as AvatarStyle } from "./Avatar";
 import { TweetText } from "./TweetText";
@@ -27,6 +28,13 @@ const QuotedTweetBodyStyle = styled.div`
 
 export const Style = styled.div`
   display: flex;
+  > * {
+    flex: 0 0 auto;
+  }
+
+  > div {
+    flex: 1;
+  }
 
   ${AvatarStyle} {
     margin-right: 12px;
@@ -66,10 +74,11 @@ const Alias = styled.span`
   margin-right: 12px;
 `;
 
-const TimeAgo = styled.span`
+const TimeAgo = styled(Link)`
   font-weight: 300;
   margin-bottom: 0;
   color: #aaa;
+  text-decoration: none;
 `;
 
 export const TweetBody: React.SFC<ITweetBodyProps> = (
@@ -86,7 +95,9 @@ export const TweetBody: React.SFC<ITweetBodyProps> = (
         <Title>
           <Name>{tweet.user.name}</Name>
           <Alias>{`@${tweet.user.screen_name}`}</Alias>
-          <TimeAgo>{getTimeAgo(new Date(tweet.created_at))}</TimeAgo>
+          <TimeAgo to={`/tweets/${tweet.id_str}`}>
+            {getTimeAgo(new Date(tweet.created_at))}
+          </TimeAgo>
         </Title>
         <TweetText tweet={tweet} />
         {mediaItems && <MediaViewer items={mediaItems} />}
@@ -107,7 +118,9 @@ export const QuotedTweetBody: React.SFC<ITweetBodyProps> = (
       <Title>
         <Name>{tweet.user.name}</Name>
         <Alias>{`@${tweet.user.screen_name}`}</Alias>
-        <TimeAgo>{getTimeAgo(new Date(tweet.created_at))}</TimeAgo>
+        <TimeAgo to={`/tweets/${tweet.id_str}`}>
+          {getTimeAgo(new Date(tweet.created_at))}
+        </TimeAgo>
       </Title>
       <TweetText tweet={tweet} />
     </QuotedTweetBodyStyle>
