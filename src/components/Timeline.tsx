@@ -8,7 +8,7 @@ import { media } from "./../utils/styles";
 
 export interface ITimelineProps {
   timeline?: any[];
-  getTimeline: (query?: ITimelineQueryParams) => void;
+  getTimeline: (query?: ITimelineQueryParams) => any;
   autoRefresh?: boolean;
   onSeenAllNew?: () => void;
 }
@@ -58,7 +58,24 @@ export class Timeline extends React.Component<ITimelineProps, {}> {
         offsetHeight: element.offsetHeight
       });
     };
-    this.throttledGetOldTimeline = throttle(this.props.getTimeline, 10000);
+    this.throttledGetOldTimeline = (() => {
+      let activeRequest = false;
+      return (...args: any[]) => {
+        if (activeRequest) {
+          return;
+        }
+        activeRequest = true;
+        this.props
+          .getTimeline(...args)
+          .then(
+            () =>
+              new Promise(resolve => {
+                setTimeout(() => resolve(), 6000);
+              })
+          )
+          .then(() => (activeRequest = false));
+      };
+    })();
   }
 
   componentDidMount() {
