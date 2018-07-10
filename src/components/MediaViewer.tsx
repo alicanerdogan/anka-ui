@@ -2,11 +2,11 @@ import * as React from "react";
 import styled from "react-emotion";
 
 import { IMedia } from "../models/Entity";
-import { MediaModal } from "./MediaModal";
-import { PlayOverlay } from "./PlayOverlay";
+import { PlayOverlay, PlayOverlayStyle } from "./PlayOverlay";
 
 export interface IMediaViewerProps {
   items: IMedia[];
+  onMediaClick?: (items: IMedia[], index: number) => void;
 }
 
 const Image = styled("img")`
@@ -22,50 +22,31 @@ export const Style = styled("div")`
   ${Image} {
     margin-right: 8px;
   }
+
+  ${PlayOverlayStyle} {
+    height: 160px;
+  }
 `;
 
 const ImageContainer = styled.div`
   position: relative;
 `;
 
-interface IMediaViewerState {
-  isModalOpen: boolean;
-  focusedImageIndex?: number;
-}
-
-export class MediaViewer extends React.Component<
-  IMediaViewerProps,
-  IMediaViewerState
-> {
-  constructor(props: IMediaViewerProps) {
-    super(props);
-
-    this.state = { isModalOpen: false };
-  }
-
-  onCloseModalRequest = () =>
-    this.setState(state => ({ ...state, isModalOpen: false }));
-
-  openModal = (index: number) =>
-    this.setState(state => ({
-      ...state,
-      isModalOpen: true,
-      focusedImageIndex: index
-    }));
+export class MediaViewer extends React.Component<IMediaViewerProps, {}> {
+  onMediaClick = (index: number) => {
+    const { items, onMediaClick } = this.props;
+    onMediaClick && onMediaClick(items, index);
+  };
 
   render() {
     const { items } = this.props;
-    const { isModalOpen, focusedImageIndex } = this.state;
     return (
       <Style>
-        <MediaModal
-          items={items}
-          isOpen={isModalOpen}
-          onCloseRequest={this.onCloseModalRequest}
-          initialIndex={focusedImageIndex}
-        />
         {items.map((item, i) => (
-          <ImageContainer key={item.id_str} onClick={() => this.openModal(i)}>
+          <ImageContainer
+            key={item.id_str}
+            onClick={() => this.onMediaClick(i)}
+          >
             {item.video_info && <PlayOverlay />}
             <Image src={item.media_url_https} />
           </ImageContainer>

@@ -3,9 +3,11 @@ import styled from "react-emotion";
 import { ITweet } from "../models/Tweet";
 import { TweetBody, Style as TweetBodyStyle } from "./TweetBody";
 import { RTBadge, RTBadgeStyle } from "./RTBadge";
+import { IMedia } from "../models/Entity";
 
 export interface ITweetProps {
   tweet: ITweet;
+  onMediaClick?: (mediaItems: IMedia[], index: number) => void;
 }
 
 interface IStyleProps {
@@ -33,12 +35,15 @@ export class Tweet extends React.Component<ITweetProps, {}> {
   }
 
   render() {
-    const { tweet } = this.props;
+    const { tweet, onMediaClick } = this.props;
     const retweet: boolean = !!tweet.retweeted_status;
     return (
       <Style retweet={retweet}>
         {retweet && <RTBadge alias={tweet.user.screen_name} />}
-        <TweetBody tweet={tweet.retweeted_status || tweet} />
+        <TweetBody
+          tweet={tweet.retweeted_status || tweet}
+          onMediaClick={onMediaClick}
+        />
       </Style>
     );
   }

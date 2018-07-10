@@ -12,9 +12,11 @@ import {
 import { MediaViewer, Style as MediaViewerStyle } from "./MediaViewer";
 import { WrapperLink } from "./List/WrapperLink";
 import { getTimeAgo } from "../utils/date";
+import { IMedia } from "../models/Entity";
 
 export interface ITweetBodyProps {
   tweet: ITweet;
+  onMediaClick?: (mediaItems: IMedia[], index: number) => void;
 }
 
 const QuotedTweetBodyStyle = styled.div`
@@ -84,7 +86,7 @@ const TimeAgo = styled(Link)`
 export const TweetBody: React.SFC<ITweetBodyProps> = (
   props: ITweetBodyProps
 ) => {
-  const { tweet } = props;
+  const { tweet, onMediaClick } = props;
   const mediaItems = tweet.extended_entities
     ? tweet.extended_entities.media
     : tweet.entities.media;
@@ -100,7 +102,9 @@ export const TweetBody: React.SFC<ITweetBodyProps> = (
           </TimeAgo>
         </Title>
         <TweetText tweet={tweet} />
-        {mediaItems && <MediaViewer items={mediaItems} />}
+        {mediaItems && (
+          <MediaViewer items={mediaItems} onMediaClick={onMediaClick} />
+        )}
         {tweet.quoted_status && <QuotedTweetBody tweet={tweet.quoted_status} />}
         <TweetStatus {...tweet as ITweetStatusProps} />
       </div>

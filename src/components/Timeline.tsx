@@ -4,15 +4,10 @@ import { throttle, first, last } from "lodash-es";
 import { Tweet, Style as TweetStyle } from "./Tweet";
 import { RefreshTimeline } from "./RefreshTimeline";
 import { VirtualizedList, IRowsRenderEvent } from "./VirtualizedList";
+import { MediaModal } from "./MediaModal";
 import { ITweet } from "../models/Tweet";
 import { media } from "./../utils/styles";
-
-export interface ITimelineProps {
-  timeline?: any[];
-  getTimeline: (query?: ITimelineQueryParams) => any;
-  autoRefresh?: boolean;
-  onSeenAllNew?: () => void;
-}
+import { IMedia } from "../models/Entity";
 
 export const Style = styled.div`
   margin: 0 auto;
@@ -43,12 +38,27 @@ interface IScrollStatus {
   offsetHeight: number;
 }
 
-export class Timeline extends React.Component<ITimelineProps, {}> {
+export interface ITimelineProps {
+  timeline?: any[];
+  getTimeline: (query?: ITimelineQueryParams) => any;
+  autoRefresh?: boolean;
+  onSeenAllNew?: () => void;
+}
+
+interface ITimelineState {
+  isModalOpen: boolean;
+  selectedImageIndex?: number;
+  selectedMediaItems?: IMedia[];
+}
+
+export class Timeline extends React.Component<ITimelineProps, ITimelineState> {
   throttledGetOldTimeline: (query: ITimelineQueryParams) => void;
   visibleRange?: { startIndex: number; stopIndex: number };
 
   constructor(props: ITimelineProps) {
     super(props);
+
+    this.state = { isModalOpen: false };
 
     this.throttledGetOldTimeline = (() => {
       let activeRequest = false;
@@ -93,6 +103,17 @@ export class Timeline extends React.Component<ITimelineProps, {}> {
     }
   }
 
+  onCloseModalRequest = () =>
+    this.setState(state => ({ ...state, isModalOpen: false }));
+
+  onMediaClick = (items: IMedia[], index: number) =>
+    this.setState(state => ({
+      ...state,
+      isModalOpen: true,
+      selectedImageIndex: index,
+      selectedMediaItems: items
+    }));
+
   onScroll = ({ startIndex, stopIndex }: IRowsRenderEvent): void => {
     if (
       this.visibleRange &&
@@ -117,6 +138,8 @@ export class Timeline extends React.Component<ITimelineProps, {}> {
 
     const firstTweet: ITweet = first<ITweet>(timeline);
 
+    const { isModalOpen, selectedMediaItems, selectedImageIndex } = this.state;
+
     return (
       <Style>
         {autoRefresh && (
@@ -127,10 +150,16 @@ export class Timeline extends React.Component<ITimelineProps, {}> {
             }}
           />
         )}
+        <MediaModal
+          items={selectedMediaItems}
+          isOpen={isModalOpen}
+          onCloseRequest={this.onCloseModalRequest}
+          initialIndex={selectedImageIndex}
+        />
         <VirtualizedList items={timeline} onRowsRendered={this.onScroll}>
           {({ item, style }) => (
             <div style={style}>
-              <Tweet tweet={item} />
+              <Tweet tweet={item} onMediaClick={this.onMediaClick} />
             </div>
           )}
         </VirtualizedList>
