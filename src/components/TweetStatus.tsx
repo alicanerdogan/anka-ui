@@ -1,8 +1,6 @@
 import * as React from "react";
 import styled, { css } from "react-emotion";
 
-import retweet from "./../assets/retweet.svg";
-import reply from "./../assets/reply.svg";
 import { Favorite } from "../assets/Favorite.svg";
 import { Reply } from "../assets/Reply.svg";
 import { Retweet } from "../assets/Retweet.svg";

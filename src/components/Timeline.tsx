@@ -3,6 +3,7 @@ import styled from "react-emotion";
 import { throttle, first, last } from "lodash-es";
 import { Tweet, Style as TweetStyle } from "./Tweet";
 import { RefreshTimeline } from "./RefreshTimeline";
+import { VirtualizedList } from "./VirtualizedList";
 import { ITweet } from "../models/Tweet";
 import { media } from "./../utils/styles";
 
@@ -160,7 +161,13 @@ export class Timeline extends React.Component<ITimelineProps, {}> {
             }}
           />
         )}
-        {timeline.map(tweet => <Tweet key={tweet.id_str} tweet={tweet} />)}
+        <VirtualizedList items={timeline}>
+          {({ item, style }) => (
+            <div style={style}>
+              <Tweet tweet={item} />
+            </div>
+          )}
+        </VirtualizedList>
       </Style>
     );
   }

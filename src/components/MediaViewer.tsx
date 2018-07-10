@@ -11,7 +11,7 @@ export interface IMediaViewerProps {
 
 const Image = styled("img")`
   max-width: 100%;
-  max-height: 160px;
+  height: 160px;
   border: solid 1px #ccc;
   border-radius: 3px;
 `;
