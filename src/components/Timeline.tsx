@@ -3,7 +3,7 @@ import styled from "react-emotion";
 import { throttle, first, last } from "lodash-es";
 import { Tweet, Style as TweetStyle } from "./Tweet";
 import { RefreshTimeline } from "./RefreshTimeline";
-import { VirtualizedList } from "./VirtualizedList";
+import { VirtualizedList, IRowsRenderEvent } from "./VirtualizedList";
 import { ITweet } from "../models/Tweet";
 import { media } from "./../utils/styles";
 
@@ -44,23 +44,12 @@ interface IScrollStatus {
 }
 
 export class Timeline extends React.Component<ITimelineProps, {}> {
-  onScrollRef: (ev: React.SyntheticEvent) => void;
   throttledGetOldTimeline: (query: ITimelineQueryParams) => void;
-  element?: HTMLElement;
-  scrollStatus?: IScrollStatus;
+  visibleRange?: { startIndex: number; stopIndex: number };
 
   constructor(props: ITimelineProps) {
     super(props);
 
-    const throttledOnScroll = throttle(this.onScroll, 300);
-    this.onScrollRef = (ev: React.SyntheticEvent) => {
-      const element = ev.target as HTMLElement;
-      throttledOnScroll({
-        scrollHeight: element.scrollHeight,
-        scrollTop: element.scrollTop,
-        offsetHeight: element.offsetHeight
-      });
-    };
     this.throttledGetOldTimeline = (() => {
       let activeRequest = false;
       return (...args: any[]) => {
@@ -93,17 +82,6 @@ export class Timeline extends React.Component<ITimelineProps, {}> {
     if (!timeline || !newTimeline) {
       return;
     }
-
-    if (
-      first<ITweet>(newTimeline) !== first<ITweet>(timeline) &&
-      this.element
-    ) {
-      this.scrollStatus = {
-        scrollHeight: this.element.scrollHeight,
-        scrollTop: this.element.scrollTop,
-        offsetHeight: this.element.offsetHeight
-      };
-    }
   }
 
   componentDidUpdate(oldProps: ITimelineProps) {
@@ -113,34 +91,22 @@ export class Timeline extends React.Component<ITimelineProps, {}> {
     if (!timeline || !oldTimeline) {
       return;
     }
-
-    if (
-      first<ITweet>(oldTimeline) !== first<ITweet>(timeline) &&
-      this.element
-    ) {
-      window.requestAnimationFrame(() => {
-        const restoredScrollPosition =
-          this.scrollStatus.scrollTop +
-          this.element.scrollHeight -
-          this.scrollStatus.scrollHeight;
-        this.element.scrollTop = restoredScrollPosition;
-      });
-    }
   }
 
-  onScroll = ({
-    scrollHeight,
-    scrollTop,
-    offsetHeight
-  }: IScrollStatus): void => {
-    if (scrollTop === 0) {
+  onScroll = ({ startIndex, stopIndex }: IRowsRenderEvent): void => {
+    if (
+      this.visibleRange &&
+      this.visibleRange.startIndex !== 0 &&
+      startIndex === 0
+    ) {
       const { onSeenAllNew } = this.props;
       onSeenAllNew && onSeenAllNew();
     }
-    if (scrollHeight - scrollTop <= offsetHeight + 500) {
-      const { timeline } = this.props;
+    const { timeline } = this.props;
+    if (timeline && timeline.length - stopIndex < 8) {
       this.throttledGetOldTimeline({ maxId: last<ITweet>(timeline).id_str });
     }
+    this.visibleRange = { startIndex, stopIndex };
   };
 
   render(): JSX.Element {
@@ -152,7 +118,7 @@ export class Timeline extends React.Component<ITimelineProps, {}> {
     const firstTweet: ITweet = first<ITweet>(timeline);
 
     return (
-      <Style onScroll={this.onScrollRef} innerRef={el => (this.element = el)}>
+      <Style>
         {autoRefresh && (
           <RefreshTimeline
             {...{
@@ -161,7 +127,7 @@ export class Timeline extends React.Component<ITimelineProps, {}> {
             }}
           />
         )}
-        <VirtualizedList items={timeline}>
+        <VirtualizedList items={timeline} onRowsRendered={this.onScroll}>
           {({ item, style }) => (
             <div style={style}>
               <Tweet tweet={item} />
