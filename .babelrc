@@ -4,8 +4,9 @@
       "env",
       {
         "modules": false,
+        "useBuiltIns": true,
         "targets": {
-          "firefox": 60
+          "browsers": ["> 0.5%", "not ie <= 11", "not operamini all"]
         }
       }
     ]

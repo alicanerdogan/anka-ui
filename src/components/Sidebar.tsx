@@ -87,7 +87,7 @@ export class Sidebar extends React.Component<ISidebarProps, ISidebarState> {
       <SidebarStyle>
         <Icon src={iconSrc} />
         <Links>
-          <StyledLink to="/timeline">
+          <StyledLink to="/">
             <StyledHomeIcon />
           </StyledLink>
           <StyledLink to="/likes">

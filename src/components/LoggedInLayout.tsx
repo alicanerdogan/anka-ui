@@ -31,7 +31,7 @@ export const LoggedInLayout: React.SFC<ILoggedInLayoutProps> = (
     <LoggedInLayoutStyle>
       <Sidebar />
       <Switch>
-        <Route exact path="/timeline" component={Home} />
+        <Route exact path="/" component={Home} />
         <Route exact path="/likes" component={Likes} />
         <Route exact path="/lists" component={Lists} />
         <Route exact path="/lists/:listId" component={List} />

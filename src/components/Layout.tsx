@@ -17,7 +17,7 @@ export const Layout: React.SFC<ILayoutProps> = (props: ILayoutProps) => {
   return (
     <LayoutStyle>
       <Switch>
-        <Route exact path="/" component={LoginWithTwitter} />
+        <Route exact path="/login" component={LoginWithTwitter} />
         <Route exact path="/auth_cb" component={Callback} />
         <Route exact path="/tweet" render={() => <Tweet tweet={tweet} />} />
         <LoggedInLayout />
