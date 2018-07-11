@@ -32,6 +32,7 @@ export interface IVirtualizedListProps {
   onRowsRendered?: (ev: IRowsRenderEvent) => void;
   scrollToIndex?: number;
   scrollToAlignment?: "auto" | "start" | "end";
+  getItemId?: (item: any) => string;
 }
 
 interface IRowRendererProps {
@@ -51,9 +52,15 @@ export class VirtualizedList extends React.Component<
     super(props);
     this.state = {};
 
+    const { getItemId } = this.props;
+
+    const keyMapper =
+      getItemId && ((index: number) => getItemId(this.props.items[index]));
+
     this.cache = new CellMeasurerCache({
       fixedWidth: true,
-      defaultHeight: props.defaultHeight || 100
+      defaultHeight: props.defaultHeight || 100,
+      keyMapper
     });
   }
 

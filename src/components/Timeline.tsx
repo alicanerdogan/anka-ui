@@ -52,6 +52,10 @@ interface ITimelineState {
 }
 
 export class Timeline extends React.Component<ITimelineProps, ITimelineState> {
+  static getItemId(tweet: ITweet): string {
+    return tweet.id_str;
+  }
+
   throttledGetOldTimeline: (query: ITimelineQueryParams) => void;
   visibleRange?: { startIndex: number; stopIndex: number };
 
@@ -156,7 +160,7 @@ export class Timeline extends React.Component<ITimelineProps, ITimelineState> {
           onCloseRequest={this.onCloseModalRequest}
           initialIndex={selectedImageIndex}
         />
-        <VirtualizedList items={timeline} onRowsRendered={this.onScroll}>
+        <VirtualizedList items={timeline} onRowsRendered={this.onScroll} getItemId={Timeline.getItemId}>
           {({ item, style }) => (
             <div style={style}>
               <Tweet tweet={item} onMediaClick={this.onMediaClick} />
