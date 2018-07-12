@@ -21,6 +21,7 @@ export const Style = styled("div")`
 
   ${Image} {
     margin-right: 8px;
+    background: #ddd;
   }
 
   ${PlayOverlayStyle} {

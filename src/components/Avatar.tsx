@@ -9,6 +9,7 @@ export const Style = styled("img")`
   width: 48px;
   height: 48px;
   border-radius: 3px;
+  background: #ddd;
 `;
 
 export const Avatar: React.SFC<IAvatarProps> = (props: IAvatarProps) => {

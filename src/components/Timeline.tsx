@@ -43,12 +43,14 @@ export interface ITimelineProps {
   getTimeline: (query?: ITimelineQueryParams) => any;
   autoRefresh?: boolean;
   onSeenAllNew?: () => void;
+  unseenTweetCount?: number;
 }
 
 interface ITimelineState {
   isModalOpen: boolean;
   selectedImageIndex?: number;
   selectedMediaItems?: IMedia[];
+  scrollToIndex?: number;
 }
 
 export class Timeline extends React.Component<ITimelineProps, ITimelineState> {
@@ -90,20 +92,19 @@ export class Timeline extends React.Component<ITimelineProps, ITimelineState> {
   }
 
   componentWillReceiveProps(newProps: ITimelineProps) {
-    const newTimeline = newProps.timeline;
-    const timeline = this.props.timeline;
+    const newUnseenTweetCount = newProps.unseenTweetCount;
+    const unseenTweetCount = this.props.unseenTweetCount;
 
-    if (!timeline || !newTimeline) {
+    if (!newUnseenTweetCount) {
       return;
     }
-  }
 
-  componentDidUpdate(oldProps: ITimelineProps) {
-    const oldTimeline = oldProps.timeline;
-    const timeline = this.props.timeline;
-
-    if (!timeline || !oldTimeline) {
-      return;
+    if (unseenTweetCount !== newUnseenTweetCount) {
+      const scrollToIndex = (this.visibleRange ? this.visibleRange.startIndex : 0) + newUnseenTweetCount;
+      this.setState(state => ({
+        ...state,
+        scrollToIndex
+      }));
     }
   }
 
@@ -142,7 +143,12 @@ export class Timeline extends React.Component<ITimelineProps, ITimelineState> {
 
     const firstTweet: ITweet = first<ITweet>(timeline);
 
-    const { isModalOpen, selectedMediaItems, selectedImageIndex } = this.state;
+    const {
+      isModalOpen,
+      selectedMediaItems,
+      selectedImageIndex,
+      scrollToIndex
+    } = this.state;
 
     return (
       <Style>
@@ -160,7 +166,13 @@ export class Timeline extends React.Component<ITimelineProps, ITimelineState> {
           onCloseRequest={this.onCloseModalRequest}
           initialIndex={selectedImageIndex}
         />
-        <VirtualizedList items={timeline} onRowsRendered={this.onScroll} getItemId={Timeline.getItemId}>
+        <VirtualizedList
+          items={timeline}
+          onRowsRendered={this.onScroll}
+          getItemId={Timeline.getItemId}
+          scrollToIndex={scrollToIndex}
+          scrollToAlignment="start"
+        >
           {({ item, style }) => (
             <div style={style}>
               <Tweet tweet={item} onMediaClick={this.onMediaClick} />

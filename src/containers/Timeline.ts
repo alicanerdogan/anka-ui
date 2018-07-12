@@ -13,13 +13,15 @@ interface IStateProps {
 interface IDispatchProps {
   getTimeline: (query: ITimelineExtendedQueryParams) => void;
   markAllAsRead: () => void;
+  unseenTweetCount?: number;
 }
 
 type MergeProps = (T: IStateProps, Y: IDispatchProps, U: any) => ITimelineProps;
 
 const mapStateToProps: (T: IRootState) => IStateProps = state => ({
   accessToken: state.accessToken,
-  timeline: state.timeline
+  timeline: state.timeline,
+  unseenTweetCount: state.unseenTweetCount
 });
 
 const mergeProps: MergeProps = (stateProps, dispatchProps, ownProps) => {
