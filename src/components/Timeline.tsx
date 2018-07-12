@@ -8,20 +8,15 @@ import { MediaModal } from "./MediaModal";
 import { ITweet } from "../models/Tweet";
 import { media } from "./../utils/styles";
 import { IMedia } from "../models/Entity";
+import { Spinner } from "./Spinner";
 
 export const Style = styled.div`
   margin: 0 auto;
   max-width: 900px;
-  overflow: hidden;
   border-radius: 3px;
   background: white;
   box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.11),
     0 5px 15px 0 rgba(0, 0, 0, 0.08);
-
-  &:hover {
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
 
   ${media.mobile`
     overflow-y: auto;
@@ -137,9 +132,6 @@ export class Timeline extends React.Component<ITimelineProps, ITimelineState> {
 
   render(): JSX.Element {
     const { timeline, autoRefresh, getTimeline } = this.props;
-    if (!timeline) {
-      return null;
-    }
 
     const firstTweet: ITweet = first<ITweet>(timeline);
 
@@ -152,33 +144,37 @@ export class Timeline extends React.Component<ITimelineProps, ITimelineState> {
 
     return (
       <Style>
-        {autoRefresh && (
-          <RefreshTimeline
-            {...{
-              getTimeline,
-              sinceId: firstTweet && firstTweet.id_str
-            }}
-          />
-        )}
-        <MediaModal
-          items={selectedMediaItems}
-          isOpen={isModalOpen}
-          onCloseRequest={this.onCloseModalRequest}
-          initialIndex={selectedImageIndex}
-        />
-        <VirtualizedList
-          items={timeline}
-          onRowsRendered={this.onScroll}
-          getItemId={Timeline.getItemId}
-          scrollToIndex={scrollToIndex}
-          scrollToAlignment="start"
-        >
-          {({ item, style }) => (
-            <div style={style}>
-              <Tweet tweet={item} onMediaClick={this.onMediaClick} />
-            </div>
-          )}
-        </VirtualizedList>
+        <Spinner ready={!!timeline}>
+          <React.Fragment>
+            {autoRefresh && (
+              <RefreshTimeline
+                {...{
+                  getTimeline,
+                  sinceId: firstTweet && firstTweet.id_str
+                }}
+              />
+            )}
+            <MediaModal
+              items={selectedMediaItems}
+              isOpen={isModalOpen}
+              onCloseRequest={this.onCloseModalRequest}
+              initialIndex={selectedImageIndex}
+            />
+            <VirtualizedList
+              items={timeline}
+              onRowsRendered={this.onScroll}
+              getItemId={Timeline.getItemId}
+              scrollToIndex={scrollToIndex}
+              scrollToAlignment="start"
+            >
+              {({ item, style }) => (
+                <div style={style}>
+                  <Tweet tweet={item} onMediaClick={this.onMediaClick} />
+                </div>
+              )}
+            </VirtualizedList>
+          </React.Fragment>
+        </Spinner>
       </Style>
     );
   }

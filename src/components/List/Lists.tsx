@@ -5,6 +5,7 @@ import { ListBadge, ListBadgeStyle } from "./ListBadge";
 import { PopUp, PopUpStyle } from "./PopUp";
 import { IList } from "../../models/List";
 import { media } from "../../utils/styles";
+import { Spinner } from "./../Spinner";
 
 export const ListsStyle = styled.div`
   display: flex;
@@ -52,11 +53,13 @@ export class Lists extends React.Component<IListsProps, {}> {
 
     return (
       <ListsStyle>
-        {lists.map(list => (
-          <PopUp key={list.id_str}>
-            <ListBadge list={list} />
-          </PopUp>
-        ))}
+        <Spinner ready={!!lists}>
+          {lists.map(list => (
+            <PopUp key={list.id_str}>
+              <ListBadge list={list} />
+            </PopUp>
+          ))}
+        </Spinner>
       </ListsStyle>
     );
   }
