@@ -1,6 +1,7 @@
 import { ITweet } from "../models/Tweet";
 import { Indices } from "../models/Entity";
 import { substring, length } from "stringz";
+import { unescape } from "lodash-es";
 
 export enum TextEntityType {
   TEXT,
@@ -91,14 +92,14 @@ export function getTextEntities(tweet: ITweet): ITextEntity[] {
       entities.push({
         type: TextEntityType.TEXT,
         indices,
-        text: substring(text, indices[0], indices[1])
+        text: unescape(substring(text, indices[0], indices[1]))
       });
     } else {
       const indices: Indices = [entities[i - 1].indices[1], e.indices[0]];
       entities.push({
         type: TextEntityType.TEXT,
         indices,
-        text: substring(text, indices[0], indices[1])
+        text: unescape(substring(text, indices[0], indices[1]))
       });
     }
     if (i === knownEntityCount - 1) {
@@ -109,7 +110,7 @@ export function getTextEntities(tweet: ITweet): ITextEntity[] {
       entities.push({
         type: TextEntityType.TEXT,
         indices,
-        text: substring(text, indices[0], indices[1])
+        text: unescape(substring(text, indices[0], indices[1]))
       });
     }
   }
@@ -120,7 +121,7 @@ export function getTextEntities(tweet: ITweet): ITextEntity[] {
     entities.push({
       type: TextEntityType.TEXT,
       indices: [0, text.length - 1],
-      text
+      text: unescape(text)
     });
   }
 

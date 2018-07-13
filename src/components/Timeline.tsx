@@ -95,7 +95,9 @@ export class Timeline extends React.Component<ITimelineProps, ITimelineState> {
     }
 
     if (unseenTweetCount !== newUnseenTweetCount) {
-      const scrollToIndex = (this.visibleRange ? this.visibleRange.startIndex : 0) + newUnseenTweetCount;
+      const scrollToIndex =
+        (this.visibleRange ? this.visibleRange.startIndex : 0) +
+        newUnseenTweetCount;
       this.setState(state => ({
         ...state,
         scrollToIndex

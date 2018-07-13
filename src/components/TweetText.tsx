@@ -8,17 +8,17 @@ export interface ITweetTextProps {
   tweet: ITweet;
 }
 
-const Link = styled.a``;
+const Link = styled.a`
+  display: inline;
+`;
 
 const Text = styled.span`
+  display: inline;
   font-weight: 300;
-  margin-bottom: 0;
+  white-space: pre-wrap;
 `;
 
 export const Style = styled.div`
-  ${Link} {
-    display: inline;
-  }
 `;
 
 export const TweetText: React.SFC<ITweetTextProps> = (
@@ -41,6 +41,6 @@ const TextEntity: React.SFC<ITextEntityProps> = (props: ITextEntityProps) => {
   return entity.url ? (
     <Link href={entity.url}>{entity.text}</Link>
   ) : (
-    <Text>{entity.text}</Text>
-  );
+      <Text>{entity.text}</Text>
+    );
 };
