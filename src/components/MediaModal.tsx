@@ -3,6 +3,7 @@ import styled from "react-emotion";
 
 import { VideoPlayer } from "./VideoPlayer";
 import { IMedia } from "../models/Entity";
+import { media } from "../utils/styles";
 
 export interface IMediaModalProps {
   items: IMedia[];
@@ -30,6 +31,13 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  ${media.mobile`
+    top: 16px;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+  `};
 `;
 
 const Image = styled.img`

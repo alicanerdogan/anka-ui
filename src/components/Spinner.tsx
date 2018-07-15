@@ -79,11 +79,12 @@ export class Spinner extends React.Component<ISpinnerProps, ISpinnerState> {
   constructor(props: ISpinnerProps) {
     super(props);
 
-    this.state = { blocked: true };
+    this.state = { blocked: !this.props.ready };
   }
 
   componentDidMount() {
-    setTimeout(() => this.setState({ blocked: false }), 1200);
+    this.state.blocked &&
+      setTimeout(() => this.setState({ blocked: false }), 1200);
   }
 
   render() {

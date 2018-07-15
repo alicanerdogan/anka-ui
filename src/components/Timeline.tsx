@@ -93,11 +93,13 @@ export class Timeline extends React.Component<ITimelineProps, ITimelineState> {
     if (!newUnseenTweetCount) {
       return;
     }
+    console.log(`NEW TWEETS HAS ARRIVED: ${newUnseenTweetCount}`);
 
     if (unseenTweetCount !== newUnseenTweetCount) {
       const scrollToIndex =
         (this.visibleRange ? this.visibleRange.startIndex : 0) +
-        newUnseenTweetCount;
+        (newUnseenTweetCount - (unseenTweetCount || 0));
+      console.log(`SCROLL_TO_INDEX IS SET TO: ${scrollToIndex}`);
       this.setState(state => ({
         ...state,
         scrollToIndex
@@ -122,13 +124,17 @@ export class Timeline extends React.Component<ITimelineProps, ITimelineState> {
       this.visibleRange.startIndex !== 0 &&
       startIndex === 0
     ) {
+      console.log("MARKED ALL AS SEEN");
+
       const { onSeenAllNew } = this.props;
       onSeenAllNew && onSeenAllNew();
     }
     const { timeline } = this.props;
     if (timeline && timeline.length - stopIndex < 8) {
+      console.log("OLD TWEETS ARE REQUESTED");
       this.throttledGetOldTimeline({ maxId: last<ITweet>(timeline).id_str });
     }
+    console.log(`VISIBLE RANGE IS SET TO: ${startIndex}-${stopIndex}`);
     this.visibleRange = { startIndex, stopIndex };
   };
 

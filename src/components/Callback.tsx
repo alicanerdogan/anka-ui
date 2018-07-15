@@ -23,6 +23,6 @@ export class Callback extends React.Component<ICallbackProps, {}> {
     if (!accessToken) {
       return null;
     }
-    return <Redirect to={`/timeline`} />;
+    return <Redirect to={`/`} />;
   }
 }
