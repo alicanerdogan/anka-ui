@@ -74,7 +74,7 @@ export function getTextEntities(tweet: ITweet): ITextEntity[] {
 
   tweet.entities.user_mentions.forEach(mention =>
     entities.push({
-      type: TextEntityType.URL,
+      type: TextEntityType.MENTION,
       text: `@${mention.screen_name}`,
       url: `/users/${mention.screen_name}`,
       indices: mention.indices

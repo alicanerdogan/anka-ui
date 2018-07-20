@@ -103,7 +103,7 @@ export const TweetBody: React.SFC<ITweetBodyProps> = (
       <div>
         <Title>
           <Name>{tweet.user.name}</Name>
-          <Alias to={`/users/${tweet.user.id_str}`}>{`@${
+          <Alias to={`/users/${tweet.user.screen_name}`}>{`@${
             tweet.user.screen_name
           }`}</Alias>
           <TimeAgo to={`/tweets/${tweet.id_str}`}>
@@ -130,7 +130,7 @@ export const QuotedTweetBody: React.SFC<ITweetBodyProps> = (
       <WrapperLink to={`/tweets/${tweet.id_str}`} />
       <Title>
         <Name>{tweet.user.name}</Name>
-        <Alias to={`/users/${tweet.user.id_str}`}>{`@${
+        <Alias to={`/users/${tweet.user.screen_name}`}>{`@${
           tweet.user.screen_name
         }`}</Alias>
         <TimeAgo to={`/tweets/${tweet.id_str}`}>

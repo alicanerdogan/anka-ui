@@ -14,8 +14,6 @@ import { Home, Style as HomeStyle } from "./Home";
 import User from "../containers/User";
 import { UserStyle } from "./User/User";
 
-export interface ILoggedInLayoutProps {}
-
 export const LoggedInLayoutStyle = styled.div`
   display: flex;
   max-width: 996px;
@@ -26,21 +24,17 @@ export const LoggedInLayoutStyle = styled.div`
   }
 `;
 
-export const LoggedInLayout: React.SFC<ILoggedInLayoutProps> = (
-  props: ILoggedInLayoutProps
-) => {
-  return (
-    <LoggedInLayoutStyle>
-      <Sidebar />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/likes" component={Likes} />
-        <Route exact path="/lists" component={Lists} />
-        <Route exact path="/lists/:listId" component={List} />
-        <Route exact path="/tweets/:id" component={TweetDetails} />
-        <Route exact path="/users/:id" component={User} />
-        <p>404</p>
-      </Switch>
-    </LoggedInLayoutStyle>
-  );
-};
+export const LoggedInLayout: React.SFC<{}> = (props: {}) => (
+  <LoggedInLayoutStyle>
+    <Sidebar />
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/likes" component={Likes} />
+      <Route exact path="/lists" component={Lists} />
+      <Route exact path="/lists/:listId" component={List} />
+      <Route exact path="/tweets/:id" component={TweetDetails} />
+      <Route exact path="/users/:screen_name" component={User} />
+      <p>404</p>
+    </Switch>
+  </LoggedInLayoutStyle>
+);

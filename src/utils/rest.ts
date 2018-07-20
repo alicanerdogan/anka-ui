@@ -134,9 +134,9 @@ export async function getReplies(
   return payload;
 }
 
-export async function getUser(userId: string, accessToken: string) {
+export async function getUser(screen_name: string, accessToken: string) {
   const resp = await fetch(
-    `/api/users/${userId}/?${getQueryString({
+    `/api/users/${screen_name}/?${getQueryString({
       accessToken
     })}`,
     {

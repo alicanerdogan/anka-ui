@@ -27,11 +27,11 @@ const mapStateToProps: (T: IRootState) => IStateProps = state => ({
 
 const mergeProps: MergeProps = (stateProps, dispatchProps, ownProps) => {
   const { accessToken, ...restStateProps } = stateProps;
-  const userId = ownProps.match.params.id;
+  const screen_name = ownProps.match.params.screen_name;
   return {
     ...ownProps,
     ...restStateProps,
-    getUser: () => dispatchProps.getUser(userId, accessToken)
+    getUser: () => dispatchProps.getUser(screen_name, accessToken)
   };
 };
 

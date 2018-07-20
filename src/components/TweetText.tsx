@@ -1,14 +1,23 @@
 import * as React from "react";
 import styled from "react-emotion";
+import { Link } from "react-router-dom";
 
 import { ITweet } from "../models/Tweet";
-import { getTextEntities, ITextEntity } from "../utils/entityParser";
+import {
+  getTextEntities,
+  ITextEntity,
+  TextEntityType
+} from "../utils/entityParser";
 
 export interface ITweetTextProps {
   tweet: ITweet;
 }
 
-const Link = styled.a`
+const StyledLink = styled(Link)`
+  display: inline;
+`;
+
+const AnchorTag = styled.a`
   display: inline;
 `;
 
@@ -18,8 +27,7 @@ const Text = styled.span`
   white-space: pre-wrap;
 `;
 
-export const Style = styled.div`
-`;
+export const Style = styled.div``;
 
 export const TweetText: React.SFC<ITweetTextProps> = (
   props: ITweetTextProps
@@ -38,9 +46,11 @@ interface ITextEntityProps {
 
 const TextEntity: React.SFC<ITextEntityProps> = (props: ITextEntityProps) => {
   const { entity } = props;
-  return entity.url ? (
-    <Link href={entity.url}>{entity.text}</Link>
-  ) : (
-      <Text>{entity.text}</Text>
-    );
+  if (entity.type === TextEntityType.MENTION) {
+    return <StyledLink to={entity.url}>{entity.text}</StyledLink>;
+  }
+  if (entity.url) {
+    return <AnchorTag href={entity.url}>{entity.text}</AnchorTag>;
+  }
+  return <Text>{entity.text}</Text>;
 };
