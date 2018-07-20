@@ -68,7 +68,7 @@ export const SpinnerStyle = styled.div`
 
 export interface ISpinnerProps {
   ready: boolean;
-  children: React.ReactNode;
+  children: () => React.ReactNode;
 }
 
 interface ISpinnerState {
@@ -93,7 +93,7 @@ export class Spinner extends React.Component<ISpinnerProps, ISpinnerState> {
     const { blocked } = this.state;
 
     if (!blocked && ready) {
-      return children;
+      return children();
     }
 
     return (

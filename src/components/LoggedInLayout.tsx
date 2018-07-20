@@ -11,6 +11,8 @@ import { TweetDetailsStyle } from "./TweetDetails";
 import { ListStyle } from "./List/List";
 import { Sidebar } from "./Sidebar";
 import { Home, Style as HomeStyle } from "./Home";
+import User from "../containers/User";
+import { UserStyle } from "./User/User";
 
 export interface ILoggedInLayoutProps {}
 
@@ -19,7 +21,7 @@ export const LoggedInLayoutStyle = styled.div`
   max-width: 996px;
   margin: 0 auto;
 
-  ${HomeStyle}, ${LikesStyle}, ${ListsStyle}, ${ListStyle}, ${TweetDetailsStyle} {
+  ${HomeStyle}, ${LikesStyle}, ${ListsStyle}, ${ListStyle}, ${TweetDetailsStyle}, ${UserStyle} {
     flex: 1;
   }
 `;
@@ -36,6 +38,7 @@ export const LoggedInLayout: React.SFC<ILoggedInLayoutProps> = (
         <Route exact path="/lists" component={Lists} />
         <Route exact path="/lists/:listId" component={List} />
         <Route exact path="/tweets/:id" component={TweetDetails} />
+        <Route exact path="/users/:id" component={User} />
         <p>404</p>
       </Switch>
     </LoggedInLayoutStyle>

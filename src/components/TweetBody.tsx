@@ -70,10 +70,17 @@ const Name = styled.span`
   margin-right: 6px;
 `;
 
-const Alias = styled.span`
+const Alias = styled(Link)`
   font-weight: 300;
   margin-bottom: 0;
   margin-right: 12px;
+  color: black;
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+    font-weight: 400;
+    color: blue;
+  }
 `;
 
 const TimeAgo = styled(Link)`
@@ -96,7 +103,9 @@ export const TweetBody: React.SFC<ITweetBodyProps> = (
       <div>
         <Title>
           <Name>{tweet.user.name}</Name>
-          <Alias>{`@${tweet.user.screen_name}`}</Alias>
+          <Alias to={`/users/${tweet.user.id_str}`}>{`@${
+            tweet.user.screen_name
+          }`}</Alias>
           <TimeAgo to={`/tweets/${tweet.id_str}`}>
             {getTimeAgo(new Date(tweet.created_at))}
           </TimeAgo>
@@ -121,7 +130,9 @@ export const QuotedTweetBody: React.SFC<ITweetBodyProps> = (
       <WrapperLink to={`/tweets/${tweet.id_str}`} />
       <Title>
         <Name>{tweet.user.name}</Name>
-        <Alias>{`@${tweet.user.screen_name}`}</Alias>
+        <Alias to={`/users/${tweet.user.id_str}`}>{`@${
+          tweet.user.screen_name
+        }`}</Alias>
         <TimeAgo to={`/tweets/${tweet.id_str}`}>
           {getTimeAgo(new Date(tweet.created_at))}
         </TimeAgo>

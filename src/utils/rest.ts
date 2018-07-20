@@ -133,3 +133,19 @@ export async function getReplies(
   const payload = await resp.json();
   return payload;
 }
+
+export async function getUser(userId: string, accessToken: string) {
+  const resp = await fetch(
+    `/api/users/${userId}/?${getQueryString({
+      accessToken
+    })}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+  );
+  const payload = await resp.json();
+  return payload;
+}

@@ -11,10 +11,10 @@ interface INotificationState {
   dismissed: boolean;
 }
 
-const NotificationContainer = styled.div`
+const NotificationContainer = styled.div<{ hidden: boolean }>`
+  display: ${props => (props.hidden ? "none" : "flex")};
   position: fixed;
   z-index: 5;
-  display: flex;
   align-items: center;
   justify-content: center;
   left: 0;
@@ -109,7 +109,7 @@ export class Notification extends React.Component<
     const { tweetCount } = this.props;
 
     return (
-      <NotificationContainer>
+      <NotificationContainer hidden={dismissed || !tweetCount}>
         <NotificationStyle
           pose={dismissed || !tweetCount ? "hidden" : "visible"}
           onClick={this.onDismiss}

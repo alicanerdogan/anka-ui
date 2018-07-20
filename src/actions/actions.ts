@@ -16,5 +16,6 @@ export const GET_LISTS = createAsyncActionType("GET_LISTS");
 export const GET_LIST = createAsyncActionType("GET_LIST");
 export const GET_TWEET = createAsyncActionType("GET_TWEET");
 export const GET_REPLIES = createAsyncActionType("GET_REPLIES");
+export const GET_USER = createAsyncActionType("GET_USER");
 
 export const MARK_ALL_AS_READ = "MARK_ALL_AS_READ";

@@ -54,11 +54,13 @@ export class Lists extends React.Component<IListsProps, {}> {
     return (
       <ListsStyle>
         <Spinner ready={!!lists}>
-          {lists.map(list => (
-            <PopUp key={list.id_str}>
-              <ListBadge list={list} />
-            </PopUp>
-          ))}
+          {() =>
+            lists.map(list => (
+              <PopUp key={list.id_str}>
+                <ListBadge list={list} />
+              </PopUp>
+            ))
+          }
         </Spinner>
       </ListsStyle>
     );

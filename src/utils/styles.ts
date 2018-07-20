@@ -39,6 +39,10 @@ const GlobalRules = css`
     background: #f0f0f0;
   }
 
+  button {
+    font-family: "Roboto Condensed", sans-serif;
+  }
+
   h1,
   h2,
   h3,

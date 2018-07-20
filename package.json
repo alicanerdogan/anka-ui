@@ -35,6 +35,7 @@
     "babel-polyfill": "^6.26.0",
     "emotion": "^9.2.4",
     "lodash-es": "^4.17.10",
+    "popmotion": "^8.3.3",
     "popmotion-react": "^2.1.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",

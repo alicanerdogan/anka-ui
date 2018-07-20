@@ -76,7 +76,7 @@ export function getTextEntities(tweet: ITweet): ITextEntity[] {
     entities.push({
       type: TextEntityType.URL,
       text: `@${mention.screen_name}`,
-      url: `/user/${mention.screen_name}`,
+      url: `/users/${mention.screen_name}`,
       indices: mention.indices
     })
   );

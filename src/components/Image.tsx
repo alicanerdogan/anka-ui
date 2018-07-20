@@ -39,6 +39,12 @@ export class Image extends React.Component<IImageProps, IImageState> {
     };
   }
 
+  componentWillReceiveProps(newProps: IImageProps) {
+    if (this.props.src !== newProps.src) {
+      this.setState({ loading: true });
+    }
+  }
+
   onImgLoad = () => this.setState({ loading: false });
 
   render() {

@@ -8,12 +8,14 @@ import {
   GET_LIST,
   GET_TWEET,
   GET_REPLIES,
+  GET_USER,
   MARK_ALL_AS_READ,
   TIMELINE_QUERY_MODE
 } from "../actions/actions";
 import { drop } from "lodash-es";
 import { ITweet } from "../models/Tweet";
 import { IList } from "../models/List";
+import { IUser } from "../models/User";
 
 export interface IRootState {
   accessToken?: string;
@@ -25,6 +27,7 @@ export interface IRootState {
   activeTweet?: ITweet;
   activeReplies?: ITweet[];
   unseenTweetCount: number;
+  shownUser?: IUser;
 }
 type Reducer = (T: IRootState, U: IAction) => IRootState;
 
@@ -47,6 +50,12 @@ const RootReducer: Reducer = (state = DEFAULT_STATE, action) => {
     }
     case GET_TWEET.success: {
       return { ...state, activeTweet: action.payload };
+    }
+    case GET_USER.default: {
+      return { ...state, shownUser: null };
+    }
+    case GET_USER.success: {
+      return { ...state, shownUser: action.payload };
     }
     case GET_REPLIES.success: {
       return { ...state, activeReplies: action.payload };

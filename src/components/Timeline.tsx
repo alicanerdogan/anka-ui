@@ -153,35 +153,36 @@ export class Timeline extends React.Component<ITimelineProps, ITimelineState> {
     return (
       <Style>
         <Spinner ready={!!timeline}>
-          <React.Fragment>
-            {autoRefresh && (
-              <RefreshTimeline
-                {...{
-                  getTimeline,
-                  sinceId: firstTweet && firstTweet.id_str
-                }}
-              />
-            )}
-            <MediaModal
-              items={selectedMediaItems}
-              isOpen={isModalOpen}
-              onCloseRequest={this.onCloseModalRequest}
-              initialIndex={selectedImageIndex}
-            />
-            <VirtualizedList
-              items={timeline}
-              onRowsRendered={this.onScroll}
-              getItemId={Timeline.getItemId}
-              scrollToIndex={scrollToIndex}
-              scrollToAlignment="start"
-            >
-              {({ item, style }) => (
-                <div style={style}>
-                  <Tweet tweet={item} onMediaClick={this.onMediaClick} />
-                </div>
+          {() =>
+            <React.Fragment>
+              {autoRefresh && (
+                <RefreshTimeline
+                  {...{
+                    getTimeline,
+                    sinceId: firstTweet && firstTweet.id_str
+                  }}
+                />
               )}
-            </VirtualizedList>
-          </React.Fragment>
+              <MediaModal
+                items={selectedMediaItems}
+                isOpen={isModalOpen}
+                onCloseRequest={this.onCloseModalRequest}
+                initialIndex={selectedImageIndex}
+              />
+              <VirtualizedList
+                items={timeline}
+                onRowsRendered={this.onScroll}
+                getItemId={Timeline.getItemId}
+                scrollToIndex={scrollToIndex}
+                scrollToAlignment="start"
+              >
+                {({ item, style }) => (
+                  <div style={style}>
+                    <Tweet tweet={item} onMediaClick={this.onMediaClick} />
+                  </div>
+                )}
+              </VirtualizedList>
+            </React.Fragment>}
         </Spinner>
       </Style>
     );
