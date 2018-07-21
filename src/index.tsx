@@ -1,4 +1,5 @@
 import "babel-polyfill";
+import "./assets/icons";
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";

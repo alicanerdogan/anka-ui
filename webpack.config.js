@@ -1,3 +1,4 @@
+const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -25,8 +26,15 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(png|svg|jpg|gif)$/,
-        loader: "file-loader"
+        type: "javascript/auto",
+        test: /\.(png|svg|jpg|gif|ico|xml|json)$/,
+        include: [path.resolve(__dirname, "src/assets/icons")],
+        use: {
+          loader: "file-loader",
+          options: {
+            name: "[name].[ext]"
+          }
+        }
       },
       {
         test: /\.tsx?$/,
