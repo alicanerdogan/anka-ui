@@ -1,10 +1,10 @@
 import * as React from "react";
 import {
-  List,
-  AutoSizer,
-  CellMeasurer,
-  CellMeasurerCache
-} from "react-virtualized";
+  VirtualizedList as List,
+  IRenderRange
+} from "./VirtualizedList/VirtualizedList";
+import { AutoSizer } from "./VirtualizedList/AutoSizer";
+import { ITweet } from "../models/Tweet";
 
 export interface IVirtualizedListItemProps {
   item: any;
@@ -17,91 +17,38 @@ export interface IScrollEvent {
   scrollTop: number;
 }
 
-export interface IRowsRenderEvent {
-  overscanStartIndex: number;
-  overscanStopIndex: number;
-  startIndex: number;
-  stopIndex: number;
-}
-
 export interface IVirtualizedListProps {
   items: any[];
   children: (props: IVirtualizedListItemProps) => JSX.Element;
   defaultHeight?: number;
   onScroll?: (ev: IScrollEvent) => void;
-  onRowsRendered?: (ev: IRowsRenderEvent) => void;
+  onRenderRangeChange?: (ev: IRenderRange) => void;
   scrollToIndex?: number;
   scrollToAlignment?: "auto" | "start" | "end";
   getItemId?: (item: any) => string;
-}
-
-interface IRowRendererProps {
-  index?: number;
-  key?: any;
-  parent: any;
-  style?: React.CSSProperties;
 }
 
 export class VirtualizedList extends React.Component<
   IVirtualizedListProps,
   {}
 > {
-  private cache: CellMeasurerCache;
-
   constructor(props: IVirtualizedListProps) {
     super(props);
     this.state = {};
-
-    const { getItemId } = this.props;
-
-    const keyMapper =
-      getItemId && ((index: number) => getItemId(this.props.items[index]));
-
-    this.cache = new CellMeasurerCache({
-      fixedWidth: true,
-      defaultHeight: props.defaultHeight || 100,
-      keyMapper
-    });
-  }
-
-  buildRowRenderer() {
-    const cache = this.cache;
-    const { items, children } = this.props;
-    return ({ index, key, style, parent }: IRowRendererProps) => {
-      const item = items[index];
-      return (
-        <CellMeasurer
-          key={key}
-          cache={cache}
-          parent={parent}
-          columnIndex={0}
-          rowIndex={index}
-        >
-          {children({ item, style })}
-        </CellMeasurer>
-      );
-    };
   }
 
   render() {
-    const {
-      items,
-      onScroll,
-      onRowsRendered,
-      scrollToIndex,
-      scrollToAlignment
-    } = this.props;
+    const { items, children, defaultHeight, onRenderRangeChange } = this.props;
     return (
       <AutoSizer>
-        {({ width, height }) => (
+        {(currentHeight: number) => (
           <List
-            width={width}
-            height={height}
-            deferredMeasurementCache={this.cache}
-            rowHeight={this.cache.rowHeight}
-            rowRenderer={this.buildRowRenderer()}
-            rowCount={items.length}
-            {...{ onScroll, onRowsRendered, scrollToIndex, scrollToAlignment }}
+            items={items}
+            height={currentHeight}
+            keyFn={(item: ITweet) => item.id_str}
+            expectedItemHeight={defaultHeight || 100}
+            renderItem={(item: ITweet) => children({ item, style: {} })}
+            onRenderRangeChange={onRenderRangeChange}
           />
         )}
       </AutoSizer>

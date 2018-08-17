@@ -3,12 +3,13 @@ import styled from "react-emotion";
 import { throttle, first, last } from "lodash-es";
 import { Tweet, Style as TweetStyle } from "./Tweet";
 import { RefreshTimeline } from "./RefreshTimeline";
-import { VirtualizedList, IRowsRenderEvent } from "./VirtualizedList";
+import { VirtualizedList } from "./VirtualizedList";
 import { MediaModal } from "./MediaModal";
 import { ITweet } from "../models/Tweet";
 import { media } from "./../utils/styles";
 import { IMedia } from "../models/Entity";
 import { Spinner } from "./Spinner";
+import { IRenderRange } from "./VirtualizedList/VirtualizedList";
 
 export const Style = styled.div`
   margin: 0 auto;
@@ -93,13 +94,11 @@ export class Timeline extends React.Component<ITimelineProps, ITimelineState> {
     if (!newUnseenTweetCount) {
       return;
     }
-    console.log(`NEW TWEETS HAS ARRIVED: ${newUnseenTweetCount}`);
 
     if (unseenTweetCount !== newUnseenTweetCount) {
       const scrollToIndex =
         (this.visibleRange ? this.visibleRange.startIndex : 0) +
         (newUnseenTweetCount - (unseenTweetCount || 0));
-      console.log(`SCROLL_TO_INDEX IS SET TO: ${scrollToIndex}`);
       this.setState(state => ({
         ...state,
         scrollToIndex
@@ -118,24 +117,20 @@ export class Timeline extends React.Component<ITimelineProps, ITimelineState> {
       selectedMediaItems: items
     }));
 
-  onScroll = ({ startIndex, stopIndex }: IRowsRenderEvent): void => {
+  onScroll = ({ firstVisibleItemIndex, lastVisibleItemIndex }: IRenderRange): void => {
     if (
       this.visibleRange &&
       this.visibleRange.startIndex !== 0 &&
-      startIndex === 0
+      firstVisibleItemIndex === 0
     ) {
-      console.log("MARKED ALL AS SEEN");
-
       const { onSeenAllNew } = this.props;
       onSeenAllNew && onSeenAllNew();
     }
     const { timeline } = this.props;
-    if (timeline && timeline.length - stopIndex < 8) {
-      console.log("OLD TWEETS ARE REQUESTED");
+    if (timeline && timeline.length - lastVisibleItemIndex < 8) {
       this.throttledGetOldTimeline({ maxId: last<ITweet>(timeline).id_str });
     }
-    console.log(`VISIBLE RANGE IS SET TO: ${startIndex}-${stopIndex}`);
-    this.visibleRange = { startIndex, stopIndex };
+    this.visibleRange = { startIndex: firstVisibleItemIndex, stopIndex: lastVisibleItemIndex };
   };
 
   render(): JSX.Element {
@@ -171,7 +166,7 @@ export class Timeline extends React.Component<ITimelineProps, ITimelineState> {
               />
               <VirtualizedList
                 items={timeline}
-                onRowsRendered={this.onScroll}
+                onRenderRangeChange={this.onScroll}
                 getItemId={Timeline.getItemId}
                 scrollToIndex={scrollToIndex}
                 scrollToAlignment="start"

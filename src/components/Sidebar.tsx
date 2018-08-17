@@ -75,7 +75,7 @@ export interface ISidebarProps {}
 
 interface ISidebarState {}
 
-export class Sidebar extends React.Component<ISidebarProps, ISidebarState> {
+export class Sidebar extends React.PureComponent<ISidebarProps, ISidebarState> {
   constructor(props: ISidebarProps) {
     super(props);
 

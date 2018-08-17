@@ -1,0 +1,117 @@
+{
+  "created_at": "Sat Jun 23 08:02:01 +0000 2018",
+  "id": 1010432775655252000,
+  "id_str": "1010432775655251968",
+  "full_text":
+    "\"I should probably say up front that I love working with Postgres and could die happy without ever seeing a mysql&gt; prompt again. This is not an unbiased comparison -- but those are no fun anyway.\" https://t.co/gcTxjol0lt",
+  "truncated": false,
+  "display_text_range": [0, 223],
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "user_mentions": [],
+    "urls": [
+      {
+        "url": "https://t.co/gcTxjol0lt",
+        "expanded_url":
+          "https://dev.to/dmfay/the-ultimate-postgres-vs-mysql-blog-post-1l5f",
+        "display_url": "dev.to/dmfay/the-ulti…",
+        "indices": [200, 223]
+      }
+    ]
+  },
+  "source": "<a href=\"https://buffer.com\" rel=\"nofollow\">Buffer</a>",
+  "in_reply_to_status_id": null,
+  "in_reply_to_status_id_str": null,
+  "in_reply_to_user_id": null,
+  "in_reply_to_user_id_str": null,
+  "in_reply_to_screen_name": null,
+  "user": {
+    "id": 2735246778,
+    "id_str": "2735246778",
+    "name": "The Practical Dev",
+    "screen_name": "ThePracticalDev",
+    "location": "",
+    "description":
+      "Great posts from the amazing https://t.co/xHvFQQ9jeO community, with some opinion and humor mixed in. Created by @bendhalpern. Join https://t.co/xHvFQQ9jeO!",
+    "url": "https://t.co/lhcCPP1ReQ",
+    "entities": {
+      "url": {
+        "urls": [
+          {
+            "url": "https://t.co/lhcCPP1ReQ",
+            "expanded_url": "http://dev.to",
+            "display_url": "dev.to",
+            "indices": [0, 23]
+          }
+        ]
+      },
+      "description": {
+        "urls": [
+          {
+            "url": "https://t.co/xHvFQQ9jeO",
+            "expanded_url": "https://dev.to",
+            "display_url": "dev.to",
+            "indices": [29, 52]
+          },
+          {
+            "url": "https://t.co/xHvFQQ9jeO",
+            "expanded_url": "https://dev.to",
+            "display_url": "dev.to",
+            "indices": [132, 155]
+          }
+        ]
+      }
+    },
+    "protected": false,
+    "followers_count": 146884,
+    "friends_count": 2258,
+    "listed_count": 3157,
+    "created_at": "Fri Aug 15 19:11:17 +0000 2014",
+    "favourites_count": 42299,
+    "utc_offset": null,
+    "time_zone": null,
+    "geo_enabled": false,
+    "verified": false,
+    "statuses_count": 18285,
+    "lang": "en",
+    "contributors_enabled": false,
+    "is_translator": false,
+    "is_translation_enabled": false,
+    "profile_background_color": "131516",
+    "profile_background_image_url":
+      "http://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_image_url_https":
+      "https://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_tile": true,
+    "profile_image_url":
+      "http://pbs.twimg.com/profile_images/1002604104194056192/IEoNsLNM_normal.jpg",
+    "profile_image_url_https":
+      "https://pbs.twimg.com/profile_images/1002604104194056192/IEoNsLNM_normal.jpg",
+    "profile_banner_url":
+      "https://pbs.twimg.com/profile_banners/2735246778/1492833420",
+    "profile_link_color": "14BD7B",
+    "profile_sidebar_border_color": "000000",
+    "profile_sidebar_fill_color": "000000",
+    "profile_text_color": "000000",
+    "profile_use_background_image": true,
+    "has_extended_profile": false,
+    "default_profile": false,
+    "default_profile_image": false,
+    "following": true,
+    "follow_request_sent": false,
+    "notifications": false,
+    "translator_type": "none"
+  },
+  "geo": null,
+  "coordinates": null,
+  "place": null,
+  "contributors": null,
+  "is_quote_status": false,
+  "retweet_count": 62,
+  "favorite_count": 238,
+  "favorited": true,
+  "retweeted": false,
+  "possibly_sensitive": false,
+  "lang": "en"
+}

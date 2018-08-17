@@ -27,7 +27,7 @@ export const Style = styled.div`
   }
 `;
 
-export class Tweet extends React.Component<ITweetProps, {}> {
+export class Tweet extends React.PureComponent<ITweetProps, {}> {
   constructor(props: ITweetProps) {
     super(props);
 

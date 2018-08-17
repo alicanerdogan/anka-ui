@@ -49,5 +49,16 @@ module.exports = {
       template: "./src/index.html",
       favicon: "./src/assets/icons/favicon.ico"
     })
-  ]
+  ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+          chunks: "all"
+        }
+      }
+    }
+  }
 };
