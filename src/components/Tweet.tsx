@@ -2,8 +2,8 @@ import * as React from "react";
 import styled from "react-emotion";
 import { ITweet } from "../models/Tweet";
 import { TweetBody, Style as TweetBodyStyle } from "./TweetBody";
-import { RTBadge, RTBadgeStyle } from "./RTBadge";
 import { IMedia } from "../models/Entity";
+import { RTBadge, RTBadgeStyle } from "./RTBadge";
 
 export interface ITweetProps {
   tweet: ITweet;
@@ -15,15 +15,19 @@ interface IStyleProps {
 }
 
 export const Style = styled.div`
-  border-bottom: solid 1px #eee;
-  background: ${(props: IStyleProps) => (props.retweet ? "#f8f0f8" : "#fff")};
-
-  ${RTBadgeStyle} {
-    margin: 8px 0 0px 12px;
-  }
+  position: relative;
+  border-bottom: solid 1px #e5e5e5;
+  border-top-style: solid;
+  border-top-color: ${(props: IStyleProps) =>
+    props.retweet ? "#3f8ecc" : "#e5e5e5"};
+  border-top-width: ${(props: IStyleProps) => (props.retweet ? "6px" : "0")};
 
   ${TweetBodyStyle} {
     padding: 12px;
+  }
+
+  ${RTBadgeStyle} {
+    margin-right: 12px;
   }
 `;
 
@@ -39,9 +43,9 @@ export class Tweet extends React.PureComponent<ITweetProps, {}> {
     const retweet: boolean = !!tweet.retweeted_status;
     return (
       <Style retweet={retweet}>
-        {retweet && <RTBadge alias={tweet.user.screen_name} />}
         <TweetBody
           tweet={tweet.retweeted_status || tweet}
+          rtBadge={retweet ? <RTBadge alias={tweet.user.screen_name} /> : null}
           onMediaClick={onMediaClick}
         />
       </Style>

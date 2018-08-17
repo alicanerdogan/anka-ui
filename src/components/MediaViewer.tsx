@@ -12,13 +12,14 @@ export interface IMediaViewerProps {
 
 export const Style = styled("div")`
   display: flex;
+  overflow: hidden;
+  height: 160px;
 
   ${ImageStyle} {
     margin-right: 8px;
     background: #ddd;
-    border: solid 1px #ccc;
-    border-radius: 3px;
-    max-width: 100%;
+    border: solid 1px #c3c4c5;
+    border-radius: 2px;
   }
 
   ${PlayOverlayStyle} {

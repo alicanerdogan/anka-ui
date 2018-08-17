@@ -6,9 +6,10 @@ export interface IAvatarProps {
 }
 
 export const Style = styled("img")`
-  width: 48px;
-  height: 48px;
-  border-radius: 3px;
+  width: 36px;
+  height: 36px;
+  border-radius: 2px;
+  border: solid 1px #e5e5e5;
   background: #ddd;
 `;
 

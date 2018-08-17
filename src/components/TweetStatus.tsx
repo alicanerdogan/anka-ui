@@ -47,12 +47,12 @@ const StyledReplyIcon = styled(Reply)`
 `;
 
 const Icon = styled.img`
-  width: 20px;
-  height: 20px;
+  height: 16px;
 `;
 
 const Count = styled.span`
   display: block;
+  font-weight: 300;
 `;
 
 export const Style = styled.div`
@@ -63,8 +63,8 @@ export const Style = styled.div`
     margin-right: 8px;
   }
 
-  ${Count} {
-    margin-right: 48px;
+  ${StyledReplyIcon}, ${Count} {
+    margin-right: 100px;
   }
 `;
 
@@ -73,11 +73,11 @@ export const TweetStatus: React.SFC<ITweetStatusProps> = (
 ) => {
   return (
     <Style>
-      <StyledFavoriteIcon />
-      <Count>{props.favorite_count}</Count>
+      <StyledReplyIcon />
       <StyledRetweetIcon />
       <Count>{props.retweet_count}</Count>
-      <StyledReplyIcon />
+      <StyledFavoriteIcon />
+      <Count>{props.favorite_count}</Count>
     </Style>
   );
 };

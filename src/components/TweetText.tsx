@@ -15,28 +15,47 @@ export interface ITweetTextProps {
 
 const StyledLink = styled(Link)`
   display: inline;
+  color: black;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 15px;
+
+  &:hover {
+    color: #3f8ecc;
+  }
 `;
 
 const AnchorTag = styled.a`
   display: inline;
+  color: black;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 15px;
+
+  &:hover {
+    color: #3f8ecc;
+  }
 `;
 
 const Text = styled.span`
   display: inline;
   font-weight: 300;
   white-space: pre-wrap;
+  font-size: 15px;
 `;
 
-export const Style = styled.div``;
+export const TweetTextStyle = styled.div``;
 
 export const TweetText: React.SFC<ITweetTextProps> = (
   props: ITweetTextProps
 ) => {
   const entities = getTextEntities(props.tweet);
   return (
-    <Style>
-      {entities.map((entity, id) => <TextEntity key={id} entity={entity} />)}
-    </Style>
+    <TweetTextStyle>
+      {entities.map((entity, id) => (
+        <TextEntity key={id} entity={entity} />
+      ))}
+    </TweetTextStyle>
   );
 };
 
@@ -48,6 +67,9 @@ const TextEntity: React.SFC<ITextEntityProps> = (props: ITextEntityProps) => {
   const { entity } = props;
   if (entity.type === TextEntityType.MENTION) {
     return <StyledLink to={entity.url}>{entity.text}</StyledLink>;
+  }
+  if (entity.type === TextEntityType.LINE_BREAK) {
+    return <br />;
   }
   if (entity.url) {
     return <AnchorTag href={entity.url}>{entity.text}</AnchorTag>;

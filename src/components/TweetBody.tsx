@@ -3,7 +3,7 @@ import styled from "react-emotion";
 import { Link } from "react-router-dom";
 import { ITweet } from "../models/Tweet";
 import { Avatar, Style as AvatarStyle } from "./Avatar";
-import { TweetText } from "./TweetText";
+import { TweetText, TweetTextStyle } from "./TweetText";
 import {
   TweetStatus,
   ITweetStatusProps,
@@ -16,61 +16,24 @@ import { IMedia } from "../models/Entity";
 
 export interface ITweetBodyProps {
   tweet: ITweet;
+  rtBadge?: JSX.Element;
   onMediaClick?: (mediaItems: IMedia[], index: number) => void;
 }
 
-const QuotedTweetBodyStyle = styled.div`
-  position: relative;
-  padding: 12px;
-  border: solid 1px #ccc;
-  border-radius: 3px;
-  background: #fff;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-`;
-
-export const Style = styled.div`
-  display: flex;
-  > * {
-    flex: 0 0 auto;
-  }
-
-  > div {
-    flex: 1;
-  }
-
-  ${AvatarStyle} {
-    margin-right: 12px;
-  }
-
-  ${TweetStatusStyle} {
-    margin-top: 12px;
-  }
-
-  ${MediaViewerStyle} {
-    margin-top: 12px;
-  }
-
-  ${QuotedTweetBodyStyle} {
-    margin-top: 12px;
-  }
-`;
-
-const Text = styled.p`
-  font-weight: 300;
-  margin-bottom: 0;
-`;
-
 const Title = styled.div`
+  font-size: 18px;
   margin-bottom: 4px;
 `;
 
 const Name = styled.span`
+  font-size: 18px;
   font-weight: 400;
   margin-bottom: 0;
   margin-right: 6px;
 `;
 
 const Alias = styled(Link)`
+  font-size: 16px;
   font-weight: 300;
   margin-bottom: 0;
   margin-right: 12px;
@@ -84,39 +47,87 @@ const Alias = styled(Link)`
 `;
 
 const TimeAgo = styled(Link)`
+  font-size: 16px;
   font-weight: 300;
   margin-bottom: 0;
-  color: #aaa;
+  color: black;
   text-decoration: none;
+`;
+
+const QuotedTweetBodyStyle = styled.div`
+  position: relative;
+  padding: 12px;
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.11),
+    0 5px 15px 0 rgba(0, 0, 0, 0.08);
+
+  ${TweetTextStyle} {
+    margin-bottom: 0;
+  }
+`;
+
+const TweetHeader = styled.div`
+  display: flex;
+  align-items: center;
+
+  ${TimeAgo} {
+    margin-left: auto;
+  }
+`;
+
+export const Style = styled.div`
+  ${AvatarStyle} {
+    margin-right: 12px;
+  }
+
+  ${TweetStatusStyle} {
+    margin-top: 12px;
+  }
+
+  ${MediaViewerStyle} {
+    margin-bottom: 12px;
+  }
+
+  ${QuotedTweetBodyStyle} {
+    margin-top: 12px;
+  }
+
+  ${TweetHeader} {
+    margin-bottom: 12px;
+  }
+
+  ${TweetTextStyle} {
+    margin-bottom: 12px;
+  }
 `;
 
 export const TweetBody: React.SFC<ITweetBodyProps> = (
   props: ITweetBodyProps
 ) => {
-  const { tweet, onMediaClick } = props;
+  const { tweet, onMediaClick, rtBadge } = props;
   const mediaItems = tweet.extended_entities
     ? tweet.extended_entities.media
     : tweet.entities.media;
   return (
     <Style>
-      <Avatar profileImageUrl={tweet.user.profile_image_url_https} />
-      <div>
-        <Title>
-          <Name>{tweet.user.name}</Name>
-          <Alias to={`/users/${tweet.user.screen_name}`}>{`@${
-            tweet.user.screen_name
-          }`}</Alias>
-          <TimeAgo to={`/tweets/${tweet.id_str}`}>
-            {getTimeAgo(new Date(tweet.created_at))}
-          </TimeAgo>
-        </Title>
-        <TweetText tweet={tweet} />
-        {mediaItems && (
-          <MediaViewer items={mediaItems} onMediaClick={onMediaClick} />
-        )}
-        {tweet.quoted_status && <QuotedTweetBody tweet={tweet.quoted_status} />}
-        <TweetStatus {...tweet as ITweetStatusProps} />
-      </div>
+      <TweetHeader>
+        <Avatar profileImageUrl={tweet.user.profile_image_url_https} />
+        <Name>{tweet.user.name}</Name>
+        <Alias to={`/users/${tweet.user.screen_name}`}>{`@${
+          tweet.user.screen_name
+        }`}</Alias>
+        {rtBadge}
+        <TimeAgo to={`/tweets/${tweet.id_str}`}>
+          {getTimeAgo(new Date(tweet.created_at))}
+        </TimeAgo>
+      </TweetHeader>
+      <TweetText tweet={tweet} />
+      {mediaItems && (
+        <MediaViewer items={mediaItems} onMediaClick={onMediaClick} />
+      )}
+      {tweet.quoted_status && <QuotedTweetBody tweet={tweet.quoted_status} />}
+      <TweetStatus {...tweet as ITweetStatusProps} />
     </Style>
   );
 };
@@ -128,7 +139,7 @@ export const QuotedTweetBody: React.SFC<ITweetBodyProps> = (
   return (
     <QuotedTweetBodyStyle>
       <WrapperLink to={`/tweets/${tweet.id_str}`} />
-      <Title>
+      <TweetHeader>
         <Name>{tweet.user.name}</Name>
         <Alias to={`/users/${tweet.user.screen_name}`}>{`@${
           tweet.user.screen_name
@@ -136,7 +147,7 @@ export const QuotedTweetBody: React.SFC<ITweetBodyProps> = (
         <TimeAgo to={`/tweets/${tweet.id_str}`}>
           {getTimeAgo(new Date(tweet.created_at))}
         </TimeAgo>
-      </Title>
+      </TweetHeader>
       <TweetText tweet={tweet} />
     </QuotedTweetBodyStyle>
   );

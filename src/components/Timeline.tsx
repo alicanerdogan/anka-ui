@@ -16,8 +16,6 @@ export const Style = styled.div`
   max-width: 900px;
   border-radius: 3px;
   background: white;
-  box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.11),
-    0 5px 15px 0 rgba(0, 0, 0, 0.08);
 
   ${media.mobile`
     overflow-y: auto;
@@ -117,7 +115,10 @@ export class Timeline extends React.Component<ITimelineProps, ITimelineState> {
       selectedMediaItems: items
     }));
 
-  onScroll = ({ firstVisibleItemIndex, lastVisibleItemIndex }: IRenderRange): void => {
+  onScroll = ({
+    firstVisibleItemIndex,
+    lastVisibleItemIndex
+  }: IRenderRange): void => {
     if (
       this.visibleRange &&
       this.visibleRange.startIndex !== 0 &&
@@ -130,7 +131,10 @@ export class Timeline extends React.Component<ITimelineProps, ITimelineState> {
     if (timeline && timeline.length - lastVisibleItemIndex < 8) {
       this.throttledGetOldTimeline({ maxId: last<ITweet>(timeline).id_str });
     }
-    this.visibleRange = { startIndex: firstVisibleItemIndex, stopIndex: lastVisibleItemIndex };
+    this.visibleRange = {
+      startIndex: firstVisibleItemIndex,
+      stopIndex: lastVisibleItemIndex
+    };
   };
 
   render(): JSX.Element {
@@ -148,7 +152,7 @@ export class Timeline extends React.Component<ITimelineProps, ITimelineState> {
     return (
       <Style>
         <Spinner ready={!!timeline}>
-          {() =>
+          {() => (
             <React.Fragment>
               {autoRefresh && (
                 <RefreshTimeline
@@ -177,7 +181,8 @@ export class Timeline extends React.Component<ITimelineProps, ITimelineState> {
                   </div>
                 )}
               </VirtualizedList>
-            </React.Fragment>}
+            </React.Fragment>
+          )}
         </Spinner>
       </Style>
     );
