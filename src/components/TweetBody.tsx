@@ -71,8 +71,9 @@ const TweetHeader = styled.div`
   display: flex;
   align-items: center;
 
-  ${TimeAgo} {
+  ${TweetStatusStyle} {
     margin-left: auto;
+    margin-right: 12px;
   }
 `;
 
@@ -81,24 +82,16 @@ export const Style = styled.div`
     margin-right: 12px;
   }
 
-  ${TweetStatusStyle} {
-    margin-top: 12px;
-  }
-
   ${MediaViewerStyle} {
-    margin-bottom: 12px;
+    margin-top: 12px;
   }
 
   ${QuotedTweetBodyStyle} {
     margin-top: 12px;
   }
 
-  ${TweetHeader} {
-    margin-bottom: 12px;
-  }
-
   ${TweetTextStyle} {
-    margin-bottom: 12px;
+    margin-top: 12px;
   }
 `;
 
@@ -118,6 +111,7 @@ export const TweetBody: React.SFC<ITweetBodyProps> = (
           tweet.user.screen_name
         }`}</Alias>
         {rtBadge}
+        <TweetStatus {...tweet as ITweetStatusProps} />
         <TimeAgo to={`/tweets/${tweet.id_str}`}>
           {getTimeAgo(new Date(tweet.created_at))}
         </TimeAgo>
@@ -127,7 +121,6 @@ export const TweetBody: React.SFC<ITweetBodyProps> = (
         <MediaViewer items={mediaItems} onMediaClick={onMediaClick} />
       )}
       {tweet.quoted_status && <QuotedTweetBody tweet={tweet.quoted_status} />}
-      <TweetStatus {...tweet as ITweetStatusProps} />
     </Style>
   );
 };

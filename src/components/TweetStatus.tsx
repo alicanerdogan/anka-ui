@@ -13,58 +13,97 @@ export interface ITweetStatusProps {
 }
 
 const IconStyle = css`
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   margin-right: 8px;
-  color: #888;
 `;
 
 const StyledFavoriteIcon = styled(Favorite)`
   ${IconStyle};
-
-  &:hover {
-    stroke-width: 0;
-    fill: #f06292;
-  }
 `;
 
 const StyledRetweetIcon = styled(Retweet)`
   ${IconStyle};
-
-  &:hover {
-    stroke-width: 2;
-    color: #408ecc;
-  }
 `;
 
 const StyledReplyIcon = styled(Reply)`
   ${IconStyle};
-
-  &:hover {
-    stroke-width: 2;
-    color: #408ecc;
-  }
-`;
-
-const Icon = styled.img`
-  height: 16px;
 `;
 
 const Count = styled.span`
   display: block;
   font-weight: 300;
+  font-size: 14px;
+`;
+
+const PillStyle = css`
+  border: solid 1px;
+  height: 24px;
+  border-radius: 12px;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const RedPill = styled.div`
+  ${PillStyle};
+  border-color: #f06292;
+
+  ${Count} {
+    color: #f06292;
+  }
+
+  ${StyledFavoriteIcon} {
+    color: #f06292;
+  }
+
+  &:hover {
+    background: #f06292;
+    cursor: pointer;
+
+    ${Count} {
+      color: #fff;
+    }
+
+    ${StyledFavoriteIcon} {
+      color: #fff;
+    }
+  }
+`;
+
+const BluePill = styled.div`
+  ${PillStyle};
+  border-color: #408ecc;
+
+  ${Count} {
+    color: #408ecc;
+  }
+
+  ${StyledRetweetIcon} {
+    color: #408ecc;
+  }
+
+  &:hover {
+    background: #408ecc;
+    cursor: pointer;
+
+    ${Count} {
+      color: #fff;
+    }
+
+    ${StyledRetweetIcon} {
+      color: #fff;
+    }
+  }
 `;
 
 export const Style = styled.div`
   display: flex;
   align-items: center;
 
-  ${Icon} {
-    margin-right: 8px;
-  }
-
-  ${StyledReplyIcon}, ${Count} {
-    margin-right: 100px;
+  ${RedPill} {
+    margin-left: 8px;
   }
 `;
 
@@ -73,11 +112,14 @@ export const TweetStatus: React.SFC<ITweetStatusProps> = (
 ) => {
   return (
     <Style>
-      <StyledReplyIcon />
-      <StyledRetweetIcon />
-      <Count>{props.retweet_count}</Count>
-      <StyledFavoriteIcon />
-      <Count>{props.favorite_count}</Count>
+      <BluePill>
+        <StyledRetweetIcon />
+        <Count>{props.retweet_count}</Count>
+      </BluePill>
+      <RedPill>
+        <StyledFavoriteIcon />
+        <Count>{props.favorite_count}</Count>
+      </RedPill>
     </Style>
   );
 };
